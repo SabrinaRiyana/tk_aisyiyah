@@ -21,6 +21,7 @@ class CurriculumResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-book-open';
 
     protected static ?string $recordTitleAttribute = 'judul';
+    protected static ?string $navigationLabel = 'Kurikulum';
 
     public static function form(Schema $schema): Schema
     {
@@ -50,5 +51,14 @@ class CurriculumResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return 'Profil Sekolah';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Kurikulum';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Kurikulum';
     }
 }

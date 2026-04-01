@@ -35,6 +35,7 @@ class PpdbRegistrationResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $recordTitleAttribute = 'nama';
+    protected static ?string $navigationLabel = 'Data Pendaftaran';
 
     public static function form(Schema $schema): Schema
     {
@@ -63,72 +64,70 @@ class PpdbRegistrationResource extends Resource
 
     public static function table(Table $table): Table
     {
-    // Ambil settingan form yang terakhir dibuat Umi
-    $setting = \App\Models\PpdbSetting::first();
-    $formFields = $setting?->form_fields ?? [];
+        $setting = \App\Models\PpdbSetting::first();
+        $formFields = $setting?->form_fields ?? [];
 
-    return $table
-        ->columns([
-            // 1. Kolom Nama (Kita asumsikan Umi pasti bikin field "Nama Lengkap")
-            // Kalau Umi ganti nama label, kolom ini otomatis ngikut
-            ...collect($formFields)->map(function ($field) {
-                return \Filament\Tables\Columns\TextColumn::make("payload.{$field['label']}")
-                    ->label($field['label'])
-                    ->searchable()
-                    ->toggleable();
-            })->toArray(),
+        return $table
+            ->columns([
+                ...collect($formFields)
+                ->filter(fn ($field) => in_array($field['type'], ['text', 'file']))
+                ->map(function ($field) {
 
-            ImageColumn::make('payload.Kartu Keluarga')
-                ->label('KK')
-                ->disk('public')
-                ->height(60),
+                    if ($field['type'] === 'text') {
+                        return TextColumn::make("payload.{$field['label']}")
+                            ->label($field['label'])
+                            ->searchable()
+                            ->toggleable();
+                    }
 
-            ImageColumn::make('payload.Akta Kelahiran')
-                ->label('Akta')
-                ->disk('public')
-                ->height(60),
+                    if ($field['type'] === 'file') {
+                        return ImageColumn::make($field['label'])
+                        ->label($field['label'])
+                        ->getStateUsing(fn ($record) => 
+                            asset('storage/' . ($record->payload[$field['label']] ?? ''))
+                        )
+                        ->height(60);
+                    }
 
-            ImageColumn::make('payload.FC KTP Wali')
-                ->label('KTP Wali')
-                ->disk('public')
-                ->height(60),
+                })
+                ->values() // ⬅️ penting
+                ->toArray(),
 
-            // 2. Kolom Status
-            \Filament\Tables\Columns\TextColumn::make('status')
-                ->badge()
-                ->color(fn (string $state): string => match ($state) {
-                    'pending' => 'warning',
-                    'success' => 'success',
-                    default => 'gray',
-                }),
+                // STATUS
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'success' => 'success',
+                        default => 'gray',
+                    }),
 
-            \Filament\Tables\Columns\TextColumn::make('created_at')
-                ->label('Tanggal Daftar')
-                ->dateTime('d M Y H:i'),
-        ])
-        ->filters([
-            // Kosongin aja kalau belum butuh
-        ])
-        ->actions([
-            //ViewAction::make(),
-            EditAction::make('Print')
-                ->label('Print')
-                ->icon('heroicon-o-printer')
-                ->url(fn ($record) => route('ppdb.print', $record)) // Buat route khusus print nanti
-                ->openUrlInNewTab(),
-            DeleteAction::make(),
-        ])
-        ->headerActions([
-            ExportAction::make()
-                ->exports([
-                    ExcelExport::make()
-                        ->fromTable() // Otomatis ambil kolom yang tampil di tabel
-                        ->withFilename('Data_PPDB_' . date('Y-m-d')),
-                ])
-                ->label('Ekspor ke Excel')
-                ->color('success')
-                ->icon('heroicon-o-document-arrow-down'),
-        ]);
+                // CREATED AT
+                TextColumn::make('created_at')
+                    ->label('Tanggal Daftar')
+                    ->dateTime('d M Y H:i'),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                EditAction::make('Print')
+                    ->label('Print')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn ($record) => route('ppdb.print', $record))
+                    ->openUrlInNewTab(),
+
+                DeleteAction::make()
+                    ->label('Hapus'),
+            ])
+           ->headerActions([
+                ExportAction::make()
+                    ->exports([
+                        ExcelExport::make()
+                            ->fromTable()
+                            ->withFilename('Data_PPDB_' . date('Y-m-d')),
+                    ])
+            ]);
     }
 
     public static function getRelations(): array
@@ -149,5 +148,15 @@ class PpdbRegistrationResource extends Resource
       public static function getNavigationGroup(): ?string
     {
         return 'PPDB';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Data Pendaftaran';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Data Pendaftaran';
     }
 }

@@ -31,7 +31,7 @@ class PpdbController extends Controller
 
         PpdbRegistration::create([
             'payload' => $finalData,
-            'status' => 'pending'
+            'status' => 'Success'
         ]);
 
         return response()->json([

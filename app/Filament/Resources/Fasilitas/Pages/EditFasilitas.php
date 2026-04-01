@@ -9,11 +9,13 @@ use Filament\Resources\Pages\EditRecord;
 class EditFasilitas extends EditRecord
 {
     protected static string $resource = FasilitasResource::class;
+    protected static ?string $title = 'Ubah Fasilitas';
 
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->label('Hapus Fasilitas'),
         ];
     }
 }

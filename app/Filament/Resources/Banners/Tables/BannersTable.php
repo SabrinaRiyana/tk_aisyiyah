@@ -16,16 +16,18 @@ class BannersTable
         return $table
             ->columns([
                 TextColumn::make('page')
+                    ->label('Halaman')
                     ->searchable(),
-                ImageColumn::make('image'),
-                TextColumn::make('order')
-                    ->numeric()
-                    ->sortable(),
+                ImageColumn::make('image')
+                    ->label('Gambar Banner')
+                    ->circuilar(),
                 TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada')  
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -34,11 +36,13 @@ class BannersTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->label('Hapus'),
                 ]),
             ]);
     }

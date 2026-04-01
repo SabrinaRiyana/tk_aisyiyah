@@ -9,11 +9,13 @@ use Filament\Resources\Pages\EditRecord;
 class EditGallery extends EditRecord
 {
     protected static string $resource = GalleryResource::class;
+    protected static ?string $title = 'Ubah Foto Kegiatan';
 
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->label('Hapus Foto Kegiatan'),
         ];
     }
 }

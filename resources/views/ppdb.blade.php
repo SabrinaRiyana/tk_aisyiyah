@@ -300,7 +300,7 @@
     <div class="success-info-cards">
       <div class="success-info-card"><div class="sic-icon green">💳</div><div><div class="sic-label">Rekening Pembayaran</div><div class="sic-value">{{ schoolInfo('rekening') }}</div></div></div>
       <div class="success-info-card"><div class="sic-icon blue">📧</div><div><div class="sic-label">Kirim Bukti ke Email</div><div class="sic-value">{{ schoolInfo('email') }}</div></div></div>
-      <div class="success-info-card"><div class="sic-icon amber">📞</div><div><div class="sic-label">Hubungi Admin</div><div class="sic-value">{{ schoolInfo('phone') }}</div></div></div>
+      <div class="success-info-card"><div class="sic-icon amber">📞</div><div><div class="sic-label">Hubungi Admin</div><div class="sic-value">{{ schoolInfo('telepon') }}</div></div></div>
     </div>
     <div class="success-btn-row">
       <button class="btn-success-primary" onclick="location.reload()">Daftar Lagi</button>
@@ -321,7 +321,7 @@
       <div class="footer-socials">
         <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Instagram">📸</a>
         <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Facebook">📘</a>
-        <a class="footer-social-btn" href="https://wa.me/{{ preg_replace('/\D/','',schoolInfo('phone')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+        <a class="footer-social-btn" href="https://wa.me/{{ preg_replace('/\D/','',schoolInfo('telepon')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
       </div>
     </div>
     <div>
@@ -338,8 +338,8 @@
       <div class="footer-contact-list">
         <div class="footer-contact-item"><div class="footer-contact-icon">📧</div><div class="footer-contact-text">{{ schoolInfo('email') }}</div></div>
         <div class="footer-contact-item"><div class="footer-contact-icon">📱</div><div class="footer-contact-text">{{ schoolInfo('instagram') }}</div></div>
-        <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><div class="footer-contact-text">{{ schoolInfo('phone') }}</div></div>
-        <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">{{ schoolInfo('address') }}</div></div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><div class="footer-contact-text">{{ schoolInfo('telepon') }}</div></div>
+        <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">{{ schoolInfo('alamat') }}</div></div>
       </div>
     </div>
     <div class="footer-map-col">

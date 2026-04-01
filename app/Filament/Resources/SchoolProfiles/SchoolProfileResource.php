@@ -19,6 +19,7 @@ class SchoolProfileResource extends Resource
     protected static ?string $model = SchoolProfile::class;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office';
+    protected static ?string $navigationLabel = 'Visi Misi';
 
     public static function form(Schema $schema): Schema
     {
@@ -41,5 +42,14 @@ class SchoolProfileResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return 'Profil Sekolah';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Visi Misi';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Visi Misi';
     }
 }

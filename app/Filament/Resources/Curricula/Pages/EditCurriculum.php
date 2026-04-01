@@ -9,11 +9,13 @@ use Filament\Resources\Pages\EditRecord;
 class EditCurriculum extends EditRecord
 {
     protected static string $resource = CurriculumResource::class;
+    protected static ?string $title = 'Ubah Kurikulum';
 
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->label('Hapus Kurikulum'),
         ];
     }
 }

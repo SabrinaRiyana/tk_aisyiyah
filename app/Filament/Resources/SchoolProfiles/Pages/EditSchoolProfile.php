@@ -9,11 +9,13 @@ use Filament\Resources\Pages\EditRecord;
 class EditSchoolProfile extends EditRecord
 {
     protected static string $resource = SchoolProfileResource::class;
+    protected static ?string $title = 'Ubah Visi Misi';
 
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->label('Hapus'),
         ];
     }
 }

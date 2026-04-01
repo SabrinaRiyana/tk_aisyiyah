@@ -17,6 +17,7 @@ class TeachersTable
     return $table
         ->columns([
             ImageColumn::make('foto')
+                ->circular()
                 ->disk('public'),
             TextColumn::make('nama')
                 ->searchable(),
@@ -28,11 +29,14 @@ class TeachersTable
             //
         ])
         ->actions([
-            EditAction::make(),
-            DeleteAction::make(),
+            EditAction::make()
+                ->label('Edit'),
+            DeleteAction::make()
+                ->label('Hapus'),
         ])
         ->bulkActions([
-            DeleteBulkAction::make(),
+            DeleteBulkAction::make()
+                ->label('Hapus'),
         ]);
     }
 }

@@ -21,6 +21,7 @@ class TeacherResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $recordTitleAttribute = 'nama';
+    protected static ?string $navigationLabel = 'Guru';
 
     public static function form(Schema $schema): Schema
     {
@@ -50,5 +51,14 @@ class TeacherResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return 'Profil Sekolah';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Guru';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Guru';
     }
 }

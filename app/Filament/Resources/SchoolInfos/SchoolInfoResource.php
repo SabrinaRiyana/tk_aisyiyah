@@ -1,14 +1,22 @@
 <?php
 namespace App\Filament\Resources\SchoolInfos;
 
+use App\Filament\Resources\SchoolInfos\Pages\ListSchoolInfos;
 use App\Filament\Resources\SchoolInfos\Pages\CreateSchoolInfo;
 use App\Filament\Resources\SchoolInfos\Pages\EditSchoolInfo;
-use App\Filament\Resources\SchoolInfos\Pages\ListSchoolInfos;
+
 use App\Models\SchoolInfo;
+
 use Filament\Resources\Resource;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Schemas\Schema;
+use Filament\Tables\Table;
+
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+
 use BackedEnum;
 
 class SchoolInfoResource extends Resource
@@ -22,7 +30,7 @@ class SchoolInfoResource extends Resource
         return $schema
             ->schema([
                 Forms\Components\TextInput::make('key')
-                    ->label('Key (contoh: address, email, instagram, phone, rekening)')
+                    ->label('Key (contoh: alamat, email, instagram, telepon, rekening, maps_link)')
                     ->required()
                     ->unique(ignoreRecord: true),
 
@@ -38,6 +46,16 @@ class SchoolInfoResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('key')->sortable(),
                 Tables\Columns\TextColumn::make('value')->wrap(),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
+            ])
+            ->bulkActions([
+                DeleteBulkAction::make()
+                    ->label('Hapus'),
             ]);
     }
 
@@ -53,5 +71,14 @@ class SchoolInfoResource extends Resource
             'create' => CreateSchoolInfo::route('/create'),
             'edit' => EditSchoolInfo::route('/{record}/edit'),
         ];
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Info Sekolah';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Info Sekolah';
     }
 }

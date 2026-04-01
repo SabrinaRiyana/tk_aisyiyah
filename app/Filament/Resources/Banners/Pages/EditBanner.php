@@ -9,11 +9,13 @@ use Filament\Resources\Pages\EditRecord;
 class EditBanner extends EditRecord
 {
     protected static string $resource = BannerResource::class;
+    protected static ?string $title = 'Ubah Banner';
 
     protected function getHeaderActions(): array
     {
         return [
-         DeleteAction::make(),
+         DeleteAction::make()
+            ->label('Hapus Banner'),
         ];
     }
 }

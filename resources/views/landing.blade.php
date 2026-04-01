@@ -361,7 +361,7 @@
                 <div class="footer-socials">
                     <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Instagram">📸</a>
                     <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Facebook">📘</a>
-                    <a class="footer-social-btn" href="https://wa.me/{{ preg_replace('/\D/','',schoolInfo('phone')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+                    <a class="footer-social-btn" href="https://wa.me/{{ preg_replace('/\D/','',schoolInfo('telepon')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
                 </div>
             </div>
             <div class="footer-nav-col">
@@ -378,8 +378,8 @@
                 <div class="footer-contact-list">
                     <div class="footer-contact-item"><div class="footer-contact-icon">📧</div><div class="footer-contact-text">{{ schoolInfo('email') }}</div></div>
                     <div class="footer-contact-item"><div class="footer-contact-icon">📱</div><div class="footer-contact-text">{{ schoolInfo('instagram') }}</div></div>
-                    <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><div class="footer-contact-text">{{ schoolInfo('phone') }}</div></div>
-                    <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">{{ schoolInfo('address') }}</div></div>
+                    <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><div class="footer-contact-text">{{ schoolInfo('telepon') }}</div></div>
+                    <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">{{ schoolInfo('alamat') }}</div></div>
                 </div>
             </div>
             <div class="footer-map-col">
@@ -425,7 +425,7 @@
         const chatbotContainer=document.getElementById('chatbotContainer'), chatbotMessages=document.getElementById('chatbotMessages'), chatbotInput=document.getElementById('chatbotInput'), chatbotTyping=document.getElementById('chatbotTyping'), chatbotBadge=document.getElementById('chatbotBadge'), chatbotToggleIcon=document.getElementById('chatbotToggleIcon');
         function toggleChatbot() { isChatbotOpen=!isChatbotOpen; if(isChatbotOpen){chatbotContainer.classList.add('show');chatbotToggleIcon.textContent='✕';chatbotBadge.style.display='none';chatbotInput.focus();hasSeenWelcome=true;}else{chatbotContainer.classList.remove('show');chatbotToggleIcon.textContent='💬';} }
         setTimeout(()=>{ if(!hasSeenWelcome&&!isChatbotOpen) chatbotBadge.style.display='flex'; },5000);
-        const botResponses={'halo':'Halo! 👋 Ada yang bisa saya bantu?\n\nKlik "📝 Beri Masukan" untuk berbagi pengalaman!','ppdb':`Untuk info PPDB:\n📞 {{ schoolInfo('phone') }}\n📍 {{ schoolInfo('address') }}\n📋 Isi form PPDB online kami!`,'biaya':`💰 Biaya pendidikan sangat terjangkau.\nHubungi kami di {{ schoolInfo('phone') }} untuk info lengkap!`,'lokasi':`📍 {{ schoolInfo('address') }}\nCek Google Maps di footer halaman ini!`,'terima kasih':'Sama-sama! 😊'};
+        const botResponses={'halo':'Halo! 👋 Ada yang bisa saya bantu?\n\nKlik "📝 Beri Masukan" untuk berbagi pengalaman!','ppdb':`Untuk info PPDB:\n📞 {{ schoolInfo('telepon') }}\n📍 {{ schoolInfo('alamat') }}\n📋 Isi form PPDB online kami!`,'biaya':`💰 Biaya pendidikan sangat terjangkau.\nHubungi kami di {{ schoolInfo('telepon') }} untuk info lengkap!`,'lokasi':`📍 {{ schoolInfo('alamat') }}\nCek Google Maps di footer halaman ini!`,'terima kasih':'Sama-sama! 😊'};
         function addChatMessage(msg,isUser){const d=document.createElement('div');d.className=`chatbot-message ${isUser?'user':'bot'}`;const b=document.createElement('div');b.className='chatbot-message-bubble';b.innerHTML=msg.replace(/\n/g,'<br>');d.appendChild(b);chatbotMessages.insertBefore(d,chatbotTyping);chatbotMessages.scrollTop=chatbotMessages.scrollHeight;}
         function getBotResponse(msg){const l=msg.toLowerCase();for(let k in botResponses){if(l.includes(k))return botResponses[k];}return 'Terima kasih! 😊 Untuk info lebih lanjut silakan hubungi sekolah kami.';}
         function sendChatMessage(){const m=chatbotInput.value.trim();if(!m)return;addChatMessage(m,true);chatbotInput.value='';chatbotTyping.style.display='block';chatbotMessages.scrollTop=9999;setTimeout(()=>{chatbotTyping.style.display='none';addChatMessage(getBotResponse(m),false);},600+Math.random()*600);}

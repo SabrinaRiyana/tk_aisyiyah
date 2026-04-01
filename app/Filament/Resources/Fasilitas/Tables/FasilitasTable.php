@@ -33,17 +33,21 @@ class FasilitasTable
                     ->boolean(),
 
                 TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
 
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->bulkActions([
-                DeleteBulkAction::make(),
+                DeleteBulkAction::make()
+                    ->label('Hapus'),
             ]);
     }
 }

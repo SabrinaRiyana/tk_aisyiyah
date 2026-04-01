@@ -9,11 +9,13 @@ use Filament\Resources\Pages\EditRecord;
 class EditPpdbRegistration extends EditRecord
 {
     protected static string $resource = PpdbRegistrationResource::class;
+    protected static ?string $title = 'Ubah Data Pendaftaran';
 
     protected function getHeaderActions(): array
     {
         return [
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->label('Hapus'),
         ];
     }
 }

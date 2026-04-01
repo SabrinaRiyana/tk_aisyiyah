@@ -10,7 +10,7 @@
     body {
         background-image:
             linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-            url('/assets/images/Halaman.png') !important;
+            url('/assets/images/Halaman.png');
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
@@ -24,8 +24,8 @@
     main {
         background: transparent !important;
         background-color: transparent !important;
-        height: 100vh !important;
         min-height: 100vh !important;
+        height: auto !important;
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -35,19 +35,15 @@
         align-items: center !important;
         justify-content: center !important;
         min-height: 100vh !important;
-        height: 100vh !important;
-        background: transparent !important;
-        background-color: transparent !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        height: auto !important;
     }
 
     .fi-simple-page-content {
-        background: rgba(0, 0, 0, 0.35) !important;
+        background: rgba(0, 0, 0, 0.35);
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
         border-radius: 20px !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
         padding: 44px 36px 36px !important;
         width: 100% !important;
         max-width: 380px !important;
@@ -83,25 +79,25 @@
     .fi-simple-page-content p,
     .fi-simple-page-content span,
     .fi-simple-page-content a {
-        color: #ffffff !important;
-        text-shadow: 0 1px 4px rgba(0,0,0,0.4) !important;
+        color: #ffffff;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.4);
     }
 
     .fi-simple-page-content input[type="text"],
     .fi-simple-page-content input[type="email"],
     .fi-simple-page-content input[type="password"] {
-        background: rgba(255, 255, 255, 0.85) !important;
-        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.6);
         border-radius: 10px !important;
         padding: 11px 14px !important;
         font-size: 0.88rem !important;
-        color: #222 !important;
+        color: #222;
         text-shadow: none !important;
     }
 
     .fi-simple-page-content input:focus {
         border-color: rgba(255,255,255,0.95) !important;
-        background: rgba(255,255,255,0.95) !important;
+        background: rgba(255,255,255,0.95);
         box-shadow: 0 0 0 3px rgba(255,255,255,0.30) !important;
         outline: none !important;
     }
@@ -393,18 +389,18 @@
 </script>
 @endif
 
-{{-- ===== SIDEBAR & NAVBAR STYLE (semua halaman admin) ===== --}}
+<!-- {{-- ===== SIDEBAR & NAVBAR STYLE (semua halaman admin) ===== --}}
 @unless(request()->routeIs('filament.admin.auth.login'))
 <style>
     /* ===== SIDEBAR ===== */
     .fi-sidebar {
-        background-color: #ffffff !important;
-        border-right: 1px solid #e5e7eb !important;
+        background-color: #ffffff;
+        border-right: 1px solid #e5e7eb;
         padding: 0.75rem !important;
     }
 
     .fi-sidebar-header {
-        background-color: #ffffff !important;
+        background-color: #ffffff;
         border: 2px solid #059669 !important;
         border-radius: 1rem !important;
         padding: 0.5rem 0.75rem !important;
@@ -483,4 +479,4 @@
         background-color: #f3f4f6 !important;
     }
 </style>
-@endunless
+@endunless -->

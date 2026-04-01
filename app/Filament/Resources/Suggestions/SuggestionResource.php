@@ -12,6 +12,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\CreateAction;
 
 use App\Filament\Resources\Suggestions\Pages\CreateSuggestion;
 use App\Filament\Resources\Suggestions\Pages\EditSuggestion;
@@ -31,6 +32,7 @@ class SuggestionResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     protected static ?string $recordTitleAttribute = 'nama';
+    protected static ?string $navigationLabel = 'Testimoni & Saran';
 
     public static function form(Schema $schema): Schema
     {
@@ -72,8 +74,10 @@ class SuggestionResource extends Resource
                 // Tambahkan filter jika perlu
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
@@ -101,5 +105,13 @@ class SuggestionResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return 'Galeri';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Saran';
+    }
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Saran';
     }
 }

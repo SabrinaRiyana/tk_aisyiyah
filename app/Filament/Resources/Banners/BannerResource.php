@@ -27,13 +27,12 @@ class BannerResource extends Resource
 
     protected static ?string $navigationLabel = 'Banner';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Beranda';
-
     public static function form(Schema $schema): Schema
     {
         return $schema
             ->schema([
                 Forms\Components\Select::make('page')
+                    ->label('Halaman')
                     ->options([
                         'beranda' => 'Beranda',
                         'profil' => 'Profil',
@@ -43,6 +42,8 @@ class BannerResource extends Resource
                     ->required(),
 
                 Forms\Components\FileUpload::make('image')
+                    ->label('Gambar Banner')
+                    ->disk('public')
                     ->image()
                     ->directory('banners')
                     ->required(),
@@ -58,14 +59,18 @@ class BannerResource extends Resource
                     ->badge(),
 
                 Tables\Columns\ImageColumn::make('image')
-                    ->label('Gambar'),
+                    ->label('Gambar')
+                    ->circular(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->bulkActions([
-                DeleteBulkAction::make(),
+                DeleteBulkAction::make()
+                    ->label('Hapus'),
             ]);
     }
 
@@ -81,5 +86,15 @@ class BannerResource extends Resource
             'create' => CreateBanner::route('/create'),
             'edit' => EditBanner::route('/{record}/edit'),
         ];
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Banner';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Banner';
     }
 }

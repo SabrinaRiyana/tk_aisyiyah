@@ -23,7 +23,7 @@
         </div>
 
         {{-- PPDB Stats --}}
-        <div style="border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: white; padding: 1rem;">
+        <div style="border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: transparent; padding: 1rem;">
             @php
                 $years = collect(range(date('Y') - 5, date('Y')));
                 $ppdbData = $years->map(fn($y) => [
@@ -66,7 +66,7 @@
     </div>
 
     {{-- Recent Reviews --}}
-    <div style="background:white; border-radius:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1rem; margin-bottom:1rem;">
+    <div style="background:transparent; border-radius:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1rem; margin-bottom:1rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
             <span style="font-weight:600; color:#374151;">Recent Reviews</span>
             <a href="{{ route('filament.admin.resources.suggestions.index') }}"
@@ -92,31 +92,34 @@
     {{-- Bottom Row --}}
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
 
-        {{-- Upcoming Events --}}
-        <div style="background:white; border-radius:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1rem;">
-            <h3 style="font-weight:600; color:#374151; margin-bottom:0.75rem; font-size:0.9rem;">
-                {{ now()->translatedFormat('F') }} Upcoming Event
-            </h3>
-            <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
-                <thead>
-                    <tr style="color:#9ca3af; font-size:0.75rem; border-bottom:1px solid #e5e7eb;">
-                        <th style="padding-bottom:0.5rem; text-align:left; width:40px;">Date</th>
-                        <th style="padding-bottom:0.5rem; text-align:left;">Event name</th>
-                        <th style="padding-bottom:0.5rem; text-align:right;">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding:0.5rem 0; color:#9ca3af;">—</td>
-                        <td style="padding:0.5rem 0; color:#6b7280;">Belum ada event bulan ini</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div style="background:transparent; border-radius:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.12); padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+            <div>
+                <h3 style="font-weight:700; color:#374151; margin-bottom:0.5rem; font-size:0.95rem;">
+                    Daily Note
+                </h3>
+                <p style="font-size:0.85rem; color:#6b7280; line-height:1.4rem; min-height:3.5rem;">
+                    {{ ['Stay focused today and complete your top priority tasks!',
+                        'Remember to take short breaks to boost productivity.',
+                        'Organize your workspace for a clearer mind.',
+                        'Write down your goals and track progress every day.',
+                        'A little progress every day adds up to big results.'][rand(0,4)] }}
+                </p>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1rem;">
+                <span style="font-size:0.75rem; color:#9ca3af;">Tip of the Day</span>
+                <button style="background:#059669; color:#fff; padding:6px 12px; border-radius:8px; font-size:0.75rem; font-weight:600; cursor:pointer; box-shadow:0 2px 6px rgba(5,150,105,0.4); transition:all 0.2s;"
+                    onclick="this.parentElement.previousElementSibling.querySelector('p').textContent = ['Stay focused today and complete your top priority tasks!',
+                    'Remember to take short breaks to boost productivity.',
+                    'Organize your workspace for a clearer mind.',
+                    'Write down your goals and track progress every day.',
+                    'A little progress every day adds up to big results.'][Math.floor(Math.random()*5)]">
+                    Refresh
+                </button>
+            </div>
         </div>
 
         {{-- Customer Reviews Chart --}}
-        <div style="background:white; border-radius:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1rem;">
+        <div style="background:transparent; border-radius:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                 <span style="font-weight:600; color:#374151; font-size:0.9rem;">{{ date('Y') }} Customer Reviews</span>
                 <a href="{{ route('filament.admin.resources.suggestions.index') }}"

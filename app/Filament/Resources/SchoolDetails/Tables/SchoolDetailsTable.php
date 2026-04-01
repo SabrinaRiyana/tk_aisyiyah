@@ -15,7 +15,9 @@ class SchoolDetailsTable
         return $table
             ->columns([
                 ImageColumn::make('image_path')
+                    ->label('Gambar')
                     ->disk('public')
+                    ->circular()
                     ->height(80),
                 TextColumn::make('history_text')->label('Sejarah/Deskripsi')->limit(300),
                 TextColumn::make('reason_title')->label('Judul Alasan'),
@@ -27,8 +29,10 @@ class SchoolDetailsTable
             ])
 
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ]);
     }
 }

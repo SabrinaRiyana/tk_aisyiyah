@@ -21,6 +21,7 @@ class SchoolDetailResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-information-circle';
 
     protected static ?string $recordTitleAttribute = 'title';
+    protected static ?string $navigationLabel = 'Tentang Sekolah';
 
     public static function form(Schema $schema): Schema
     {
@@ -50,5 +51,14 @@ class SchoolDetailResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return 'Beranda';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Tentang Sekolah';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Tentang Sekolah';
     }
 }

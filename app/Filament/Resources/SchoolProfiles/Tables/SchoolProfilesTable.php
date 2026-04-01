@@ -23,8 +23,10 @@ class SchoolProfilesTable
 
            
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ]);
     }
 }

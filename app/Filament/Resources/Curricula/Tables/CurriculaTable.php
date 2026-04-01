@@ -16,17 +16,23 @@ class CurriculaTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->label('Foto')
+                    ->circular(),
                 TextColumn::make('title')
+                    ->label('Judul')
                     ->searchable(),
                 TextColumn::make('description')
+                    ->label('Deskripsi')
                     ->searchable()
                     ->limit(225),
                 TextColumn::make('created_at')
+                    ->label('Tanggal dibuat')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Tanggal diperbarui')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -35,12 +41,15 @@ class CurriculaTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->label('Hapus'),
                 ]),
             ]);
     }

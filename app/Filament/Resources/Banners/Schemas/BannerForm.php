@@ -13,14 +13,12 @@ class BannerForm
         return $schema
             ->components([
                 TextInput::make('page')
+                    ->label('Halaman')
                     ->required(),
                 FileUpload::make('image')
+                    ->label('Gambar Banner')
                     ->image()
                     ->required(),
-                TextInput::make('order')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
             ]);
     }
 }

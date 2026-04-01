@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('TK Aisyiyah')
+            ->darkMode(true)
             ->brandLogo(asset('assets/images/Logo Tk.png'))
             ->brandLogoHeight('80px')
             ->colors([
@@ -43,10 +44,10 @@ class AdminPanelProvider extends PanelProvider
                 'panels::body.start',
                 fn () => view('filament.login-style')
             )
-            ->renderHook(
+            /* ->renderHook(
                 'panels::head.end',
                 fn () => view('filament.admin-style')
-            )
+            ) */
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

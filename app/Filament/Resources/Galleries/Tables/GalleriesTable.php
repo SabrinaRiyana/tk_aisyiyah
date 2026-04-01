@@ -19,6 +19,7 @@ class GalleriesTable
         ->columns([
             ImageColumn::make('foto')
                 ->disk('public')
+                ->circular()
                 ->visibility('public'),
 
             TextColumn::make('judul')
@@ -29,14 +30,18 @@ class GalleriesTable
                 ->limit(50),
 
             TextColumn::make('created_at')
+                ->label('Tanggal Dibuat')
                 ->date(),
         ])
         ->actions([
-            EditAction::make(),
-            DeleteAction::make(),
+            EditAction::make()
+                ->label('Edit'),
+            DeleteAction::make()
+                ->label('Hapus'),
         ])
         ->bulkActions([
-            DeleteBulkAction::make(),
+            DeleteBulkAction::make()
+                ->label('Hapus'),
         ]);
     }
 }

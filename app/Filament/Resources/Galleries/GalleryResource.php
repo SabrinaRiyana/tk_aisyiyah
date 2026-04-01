@@ -21,6 +21,7 @@ class GalleryResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-photo';
 
     protected static ?string $recordTitleAttribute = 'judul';
+    protected static ?string $navigationLabel = 'Foto Kegiatan';
 
     public static function form(Schema $schema): Schema
     {
@@ -50,5 +51,14 @@ class GalleryResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return 'Galeri';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Foto Kegiatan';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Daftar Foto Kegiatan';
     }
 }
