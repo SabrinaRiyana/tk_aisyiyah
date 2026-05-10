@@ -234,54 +234,197 @@
     <div class="langkah-card"><img src="{{ asset('assets/images/Akta.png') }}" alt="Akta Kelahiran" /><div class="langkah-card-overlay"><span>Akta Kelahiran Anak</span></div></div>
     <div class="langkah-card"><img src="{{ asset('assets/images/ktp.png') }}" alt="KTP Orang Tua" /><div class="langkah-card-overlay"><span>KTP Orang Tua / Wali</span></div></div>
   </div>
-  <a href="#ppdbForm" class="btn-daftar-sekarang">DAFTAR SEKARANG &gt;</a>
+  <!-- Tombol Beli Kode -->
+<button type="button" onclick="toggleModal('modalBeli')" class="btn-submit-form" style="background: #28a745; width: auto; padding: 15px 30px;">
+    BELI KODE PENDAFTARAN >
+</button>
+
+<!-- Modal Pop-up -->
+<div id="modalBeli" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+    <div style="background:white; padding:30px; border-radius:15px; max-width:400px; width:90%; position:relative; text-align:left;">
+        <h3 style="margin-top:0; color:#28a745;">💳 Pembelian Kode PIN</h3>
+        <hr>
+        <p>Silakan lakukan pembayaran untuk mendapatkan kode pendaftaran:</p>
+        
+        <div style="background:#f8f9fa; padding:15px; border-radius:10px; margin:15px 0;">
+            <small>Harga Kode PIN:</small>
+            <div style="font-size:20px; font-weight:bold; color:#1a1a1a;">{{ schoolInfo('harga_pendaftaran') }}</div>
+            
+            <br>
+            <small>Transfer ke Rekening:</small>
+            <div style="font-weight:bold;">{{ schoolInfo('rekening') }}</div>
+        </div>
+
+        <p>Setelah transfer, silakan konfirmasi ke Admin untuk mendapatkan kode:</p>
+        <a href="https://wa.me/{{ schoolInfo('telepon') }}" target="_blank" style="display:block; background:#25d366; color:white; text-align:center; padding:12px; border-radius:8px; text-decoration:none; font-weight:bold;">
+            Chat Admin WhatsApp 📱
+        </a>
+
+        <button onclick="toggleModal('modalBeli')" style="margin-top:15px; width:100%; background:none; border:none; color:#666; cursor:pointer;">Tutup</button>
+    </div>
+</div>
 </section>
 
 <div class="page-wrapper" id="ppdbForm">
+
   @if(!$setting || !$setting->is_active)
+
     <div class="ppdb-closed">
       <div class="ppdb-closed-title">🔒 PPDB Sedang Ditutup</div>
-      <p class="ppdb-closed-msg">{{ $setting->closed_message ?? 'Pendaftaran belum dibuka.' }}</p>
-      <div class="ppdb-closed-contact">📞 Hubungi sekolah untuk info lebih lanjut.</div>
+      <p class="ppdb-closed-msg">
+        {{ $setting->closed_message ?? 'Pendaftaran belum dibuka.' }}
+      </p>
+      <div class="ppdb-closed-contact">
+        📞 Hubungi sekolah untuk info lebih lanjut.
+      </div>
     </div>
+
   @else
-    <div id="ppdbFormInner">
-      <form action="{{ route('ppdb.store') }}" method="POST" enctype="multipart/form-data" id="mainPpdbForm">
-        @csrf
-        <div class="form-card">
-          <div class="form-card-header">
-            <div class="form-card-title">📝 Formulir Pendaftaran PPDB</div>
-            <div class="form-card-sub">Isi data berikut dengan benar. Tanda <span style="color:#a0ffb8;">*</span> wajib diisi.</div>
-          </div>
-          <div class="form-card-body">
-            <div class="progress-wrap">
-              <div class="progress-label"><span>Kelengkapan Form</span><span id="progressPct">0%</span></div>
-              <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+
+    {{-- =========================
+      KONDISI 1: SUKSES DAFTAR
+    ========================== --}}
+    @if(session('form_success'))
+        <div class="form-card" style="text-align: center; padding: 40px 20px;">
+            <div style="font-size: 50px; margin-bottom: 20px;">✅</div>
+            <h2 style="color: #1a1a1a; margin-bottom: 10px;">Pendaftaran Berhasil!</h2>
+            <p style="color: #666; margin-bottom: 25px;">Data kamu sudah kami terima. Silakan simpan atau cetak bukti pendaftaran.</p>
+            
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="{{ route('ppdb.print', session('reg_id')) }}" target="_blank" class="btn-submit-form" style="background: #4a90e2; text-decoration: none;">
+                    Print Bukti 📄
+                </a>
+                <a href="/ppdb" class="btn-submit-form" style="background: #f3f4f6; color: #333; text-decoration: none;">
+                    Kembali
+                </a>
             </div>
-            @foreach(($setting->form_fields ?? []) as $index => $field)
-              <div class="form-field">
-                <label class="field-label">{{ $field['label'] }} {!! $field['required'] ? '<span style="color:red">*</span>' : '' !!}</label>
-                @if($field['type'] == 'file')
-                  <div class="field-upload" onclick="this.querySelector('input').click()">
-                    <span class="field-upload-icon">📁</span>
-                    <div class="field-upload-text">Klik untuk <span>upload {{ $field['label'] }}</span></div>
-                    <div class="field-upload-preview" id="preview_{{ $index }}"></div>
-                    <input type="file" name="files[{{ $field['label'] }}]" class="ppdb-input" {{ $field['required'] ? 'required' : '' }} onchange="updatePreview(this, 'preview_{{ $index }}')" style="display:none">
-                  </div>
-                @else
-                  <input type="{{ $field['type'] }}" name="payload[{{ $field['label'] }}]" class="field-input ppdb-input" placeholder="Masukkan {{ $field['label'] }}" {{ $field['required'] ? 'required' : '' }} oninput="calculateProgress()">
-                @endif
-              </div>
-            @endforeach
-            <div class="form-divider"></div>
-            <div class="form-submit-wrap">
-              <button type="submit" class="btn-submit-form">Kirim Pendaftaran 🚀</button>
-            </div>
-          </div>
         </div>
-      </form>
-    </div>
+
+    {{-- =========================
+          KONDISI 2: BELUM MASUK PIN
+    ========================== --}}
+    @elseif(!session('pin_valid'))
+        <div class="form-card" style="margin-bottom:20px;">
+            <div class="form-card-header">
+                <div class="form-card-title">🔑 Masukkan PIN PPDB</div>
+                <div class="form-card-sub">Silakan masukkan PIN yang sudah diberikan admin.</div>
+            </div>
+
+            <div class="form-card-body">
+                @if(session('error'))
+                    <div style="background:#ffe5e5; color:#d11a2a; padding:12px; border-radius:10px; margin-bottom:15px; font-size:.9rem; font-weight:600;">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('ppdb.checkPin') }}" method="POST">
+                    @csrf
+                    <div class="form-field">
+                        <label class="field-label">Kode PIN</label>
+                        <input type="text" name="kode_pin" class="field-input" placeholder="Contoh: TKA-12345" required autofocus>
+                    </div>
+
+                    <div class="form-submit-wrap">
+                        <button type="submit" class="btn-submit-form">Lanjutkan 🚀</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    {{-- =========================
+          KONDISI 3: PIN VALID (TAMPIL FORM)
+    ========================== --}}
+    @else
+        <div id="ppdbFormInner">
+            <form action="{{ route('ppdb.store') }}" method="POST" enctype="multipart/form-data" id="mainPpdbForm">
+                @csrf
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-title">📝 Formulir Pendaftaran PPDB</div>
+                        <div class="form-card-sub">Isi data dengan benar. Tanda <span style="color:#a0ffb8;">*</span> wajib diisi.</div>
+                    </div>
+
+                    <div class="form-card-body">
+                      {{-- Progress Bar --}}
+                      <div class="progress-wrap">
+                          <div class="progress-label">
+                              <span>Kelengkapan Form</span>
+                              <span id="progressPct">0%</span>
+                          </div>
+                          <div class="progress-bar-bg">
+                              <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+                          </div>
+                      </div>
+
+                      @php 
+                          $fields = $setting->form_fields ?? [];
+                          $perPage = 10; // Otomatis pecah setiap 10 inputan
+                          $chunks = array_chunk($fields, $perPage);
+                      @endphp
+
+                      @foreach($chunks as $pageIndex => $chunk)
+                          <div class="form-step" id="step-{{ $pageIndex }}" style="{{ $pageIndex > 0 ? 'display:none' : '' }}">
+                              <div style="margin-bottom: 20px; font-weight: bold; color: #28a745;">
+                                  Halaman {{ $pageIndex + 1 }} dari {{ count($chunks) }}
+                              </div>
+                              
+                              @foreach($chunk as $index => $field)
+                                  @php 
+                                      // Menghitung index unik agar ID preview tidak bentrok
+                                      $globalIndex = ($pageIndex * $perPage) + $index; 
+                                  @endphp
+                                  <div class="form-field">
+                                      <label class="field-label">
+                                          {{ $field['label'] }}
+                                          {!! $field['required'] ? '<span style="color:red">*</span>' : '' !!}
+                                      </label>
+
+                                      @if($field['type'] == 'file')
+                                          <div class="field-upload" onclick="this.querySelector('input').click()">
+                                              <span class="field-upload-icon">📁</span>
+                                              <div class="field-upload-text">Klik untuk <span>upload {{ $field['label'] }}</span></div>
+                                              <div class="field-upload-preview" id="preview_{{ $globalIndex }}"></div>
+                                              <input type="file" name="files[{{ $field['label'] }}]" class="ppdb-input" 
+                                                    {{ $field['required'] ? 'required' : '' }} 
+                                                    onchange="updatePreview(this, 'preview_{{ $globalIndex }}')" style="display:none">
+                                          </div>
+                                      @else
+                                          <input type="{{ $field['type'] }}" name="payload[{{ $field['label'] }}]" 
+                                                class="field-input ppdb-input" placeholder="Masukkan {{ $field['label'] }}" 
+                                                {{ $field['required'] ? 'required' : '' }} oninput="calculateProgress()">
+                                      @endif
+                                  </div>
+                              @endforeach
+
+                              <div class="form-divider"></div>
+
+                              {{-- Navigasi Tombol --}}
+                              <div style="display: flex; gap: 10px; margin-top: 20px;">
+                                  @if($pageIndex > 0)
+                                      <button type="button" onclick="changeStep({{ $pageIndex - 1 }})" class="btn-submit-form" style="background:#6c757d;">
+                                          ⬅️ Sebelumnya
+                                      </button>
+                                  @endif
+
+                                  @if($pageIndex < count($chunks) - 1)
+                                      <button type="button" onclick="changeStep({{ $pageIndex + 1 }})" class="btn-submit-form">
+                                          Selanjutnya ➡️
+                                      </button>
+                                  @else
+                                      <button type="submit" class="btn-submit-form">
+                                          Kirim Pendaftaran 🚀
+                                      </button>
+                                  @endif
+                              </div>
+                          </div>
+                      @endforeach
+                    </div>
+                </div>
+            </form>
+        </div>
+    @endif
   @endif
+
 </div>
 
 <div class="success-wrapper" id="ppdbSuccess">
@@ -390,8 +533,29 @@
 <div class="toast-notif" id="toastNotif"></div>
 
 <script>
-  const mainForm = document.getElementById('mainPpdbForm');
-  if(mainForm) { mainForm.addEventListener('submit', function(e){ e.preventDefault(); const formData = new FormData(this); fetch(this.action,{method:'POST',body:formData,headers:{'X-CSRF-TOKEN':document.querySelector('input[name="_token"]').value}}).then(r=>r.json()).then(data=>{ if(data.success){document.getElementById('ppdbFormInner').style.display='none';const s=document.getElementById('ppdbSuccess');s.style.display='block';s.scrollIntoView({behavior:'smooth',block:'start'});}else{alert('Ada kesalahan.');}}).catch(()=>alert('Terjadi error.')); }); }
+  function toggleModal(id) {
+      const modal = document.getElementById(id);
+      modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
+  }
+
+  function changeStep(stepIndex) {
+      // Sembunyikan semua step/halaman form
+      document.querySelectorAll('.form-step').forEach(step => {
+          step.style.display = 'none';
+      });
+
+      // Tampilkan halaman yang dituju
+      const targetStep = document.getElementById('step-' + stepIndex);
+      if(targetStep) {
+          targetStep.style.display = 'block';
+          
+          // Scroll ke atas formulir supaya user gak bingung
+          const formContainer = document.getElementById('ppdbFormInner');
+          formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+  }
+  //const mainForm = document.getElementById('mainPpdbForm');
+  //if(mainForm) { mainForm.addEventListener('submit', function(e){ e.preventDefault(); const formData = new FormData(this); fetch(this.action,{method:'POST',body:formData,headers:{'X-CSRF-TOKEN':document.querySelector('input[name="_token"]').value}}).then(r=>r.json()).then(data=>{ if(data.success){document.getElementById('ppdbFormInner').style.display='none';const s=document.getElementById('ppdbSuccess');s.style.display='block';s.scrollIntoView({behavior:'smooth',block:'start'});}else{alert('Ada kesalahan.');}}).catch(()=>alert('Terjadi error.')); }); }
   function calculateProgress(){const inputs=document.querySelectorAll('.ppdb-input');let filled=0;inputs.forEach(i=>{if(i.type==='file'){if(i.files.length>0)filled++;}else{if(i.value.trim()!=='')filled++;}});const pct=inputs.length>0?Math.round((filled/inputs.length)*100):0;document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressPct').textContent=pct+'%';}
   function updatePreview(input,previewId){if(input.files&&input.files[0]){document.getElementById(previewId).textContent='✅ '+input.files[0].name;calculateProgress();}}
   window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('white-bg',window.pageYOffset>100);document.getElementById('backToTop').classList.toggle('show',window.pageYOffset>window.innerHeight/2);});
@@ -409,6 +573,7 @@
   function sendChatMessage(){const m=chatbotInput.value.trim();if(!m)return;addChatMessage(m,true);chatbotInput.value='';chatbotTyping.style.display='block';setTimeout(()=>{chatbotTyping.style.display='none';addChatMessage(getBotResponse(m),false);},600+Math.random()*600);}
   function sendQuickReply(t){chatbotInput.value=t;sendChatMessage();}
   chatbotInput.addEventListener('keypress',e=>{if(e.key==='Enter')sendChatMessage();});
+
 </script>
 </body>
 </html>

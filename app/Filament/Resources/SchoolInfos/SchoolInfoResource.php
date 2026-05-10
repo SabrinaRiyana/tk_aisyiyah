@@ -30,12 +30,12 @@ class SchoolInfoResource extends Resource
         return $schema
             ->schema([
                 Forms\Components\TextInput::make('key')
-                    ->label('Key (contoh: alamat, email, instagram, telepon, rekening, maps_link)')
+                    ->label('Key (contoh: alamat, email, instagram, telepon, rekening, maps_link,harga_pendaftaran, dll)')
                     ->required()
                     ->unique(ignoreRecord: true),
 
                 Forms\Components\Textarea::make('value')
-                    ->label('Value (isi info sekolah)')
+                    ->label('Isi info sekolah(contoh pengisian no tlp: 081234567890 ditulis> 6281234567890')
                     ->required(),
             ]);
     }

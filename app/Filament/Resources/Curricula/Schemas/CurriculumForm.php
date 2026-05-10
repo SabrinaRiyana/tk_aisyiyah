@@ -23,7 +23,7 @@ class CurriculumForm
                 TextInput::make('title')
                     ->label('Judul Kurikulum')
                     ->required(),
-                Textarea::make('description')
+                TextArea::make('description')
                     ->label('Deskripsi')
                     ->required()
                     ->columnSpanFull(),

@@ -39,6 +39,9 @@ Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri');
 Route::get('/ppdb', [PpdbController::class, 'index']);
 Route::post('/ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
 Route::get('/ppdb/{id}/print', [PpdbController::class, 'print'])->name('ppdb.print');
+Route::get('/ppdb/pin', [PpdbController::class, 'showPinForm']);
+Route::post('/ppdb/check-pin', [PpdbController::class, 'checkPin'])
+    ->name('ppdb.checkPin');
 
 /* ================= SUGGESTION ================= */
 

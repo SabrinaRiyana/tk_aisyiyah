@@ -2,141 +2,105 @@
 
 namespace App\Filament\Resources\PpdbRegistrations;
 
+use App\Models\PpdbRegistration;
+use App\Models\PpdbSetting;
 use App\Filament\Resources\PpdbRegistrations\Pages\CreatePpdbRegistration;
 use App\Filament\Resources\PpdbRegistrations\Pages\EditPpdbRegistration;
 use App\Filament\Resources\PpdbRegistrations\Pages\ListPpdbRegistrations;
-use App\Filament\Resources\PpdbRegistrations\Schemas\PpdbRegistrationForm;
-use App\Filament\Resources\PpdbRegistrations\Tables\PpdbRegistrationsTable;
-use App\Models\PpdbRegistration;
-use BackedEnum;
+use App\Filament\Resources\PpdbRegistrations\DeleteAction;
+
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
-use App\Models\PpdbSetting;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\ViewAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
+use Filament\Tables;
+use Filament\Actions\Action;
+use Filament\Schemas\Schema;
+use Filament\Tables\Table;
+
 use Illuminate\Support\Str;
-
-
-use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
-use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use BackedEnum;
 
 class PpdbRegistrationResource extends Resource
 {
     protected static ?string $model = PpdbRegistration::class;
-
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
-
-    protected static ?string $recordTitleAttribute = 'nama';
     protected static ?string $navigationLabel = 'Data Pendaftaran';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
     public static function form(Schema $schema): Schema
     {
-        $setting = \App\Models\PpdbSetting::first();
+        $setting = PpdbSetting::first();
         $fields = [];
 
         if ($setting && $setting->form_fields) {
             foreach ($setting->form_fields as $field) {
-                // pastikan ada name
                 $name = $field['name'] ?? Str::slug($field['label'], '_');
-
                 if ($field['type'] === 'text') {
-                    $fields[] = TextInput::make($name)
-                        ->label($field['label'])
-                        ->required($field['required'] ?? false);
+                    $fields[] = Forms\Components\TextInput::make($name)->label($field['label']);
                 } elseif ($field['type'] === 'file') {
-                    $fields[] = FileUpload::make($name)
-                        ->label($field['label'])
-                        ->required($field['required'] ?? false);
+                    $fields[] = Forms\Components\FileUpload::make($name)->label($field['label']);
                 }
             }
         }
-
         return $schema->schema($fields);
     }
 
     public static function table(Table $table): Table
     {
-        $setting = \App\Models\PpdbSetting::first();
+        $setting = PpdbSetting::first();
         $formFields = $setting?->form_fields ?? [];
+
+        $dynamicColumns = collect($formFields)
+            ->filter(fn ($field) => in_array($field['type'], ['text', 'file']))
+            ->map(function ($field) {
+                if ($field['type'] === 'text') {
+                    return Tables\Columns\TextColumn::make("payload.{$field['label']}")
+                        ->label($field['label'])
+                        ->searchable();
+                }
+                if ($field['type'] === 'file') {
+                    return Tables\Columns\ImageColumn::make($field['label'])
+                        ->label($field['label'])
+                        ->getStateUsing(fn ($record) => 
+                            isset($record->payload[$field['label']]) ? asset('storage/' . $record->payload[$field['label']]) : null
+                        );
+                }
+            })
+            ->filter()->values()->toArray();
 
         return $table
             ->columns([
-                ...collect($formFields)
-                ->filter(fn ($field) => in_array($field['type'], ['text', 'file']))
-                ->map(function ($field) {
-
-                    if ($field['type'] === 'text') {
-                        return TextColumn::make("payload.{$field['label']}")
-                            ->label($field['label'])
-                            ->searchable()
-                            ->toggleable();
-                    }
-
-                    if ($field['type'] === 'file') {
-                        return ImageColumn::make($field['label'])
-                        ->label($field['label'])
-                        ->getStateUsing(fn ($record) => 
-                            asset('storage/' . ($record->payload[$field['label']] ?? ''))
-                        )
-                        ->height(60);
-                    }
-
-                })
-                ->values() // ⬅️ penting
-                ->toArray(),
-
-                // STATUS
-                TextColumn::make('status')
+                ...$dynamicColumns,
+                Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'pending' => 'warning',
                         'success' => 'success',
                         default => 'gray',
                     }),
-
-                // CREATED AT
-                TextColumn::make('created_at')
-                    ->label('Tanggal Daftar')
-                    ->dateTime('d M Y H:i'),
-            ])
-            ->filters([
-                //
             ])
             ->actions([
-                EditAction::make('Print')
+                \Filament\Actions\Action::make('print')
                     ->label('Print')
                     ->icon('heroicon-o-printer')
                     ->url(fn ($record) => route('ppdb.print', $record))
                     ->openUrlInNewTab(),
 
-                DeleteAction::make()
+                \Filament\Actions\DeleteAction::make()
                     ->label('Hapus'),
             ])
-           ->headerActions([
-                ExportAction::make()
+
+            ->headerActions([
+                \pxlrbt\FilamentExcel\Actions\Tables\ExportAction::make()
+                    ->label('Export Excel')
                     ->exports([
-                        ExcelExport::make()
+                        \pxlrbt\FilamentExcel\Exports\ExcelExport::make()
                             ->fromTable()
-                            ->withFilename('Data_PPDB_' . date('Y-m-d')),
-                    ])
+                    ]),
+            ])
+            ->bulkActions([
+                \Filament\Actions\DeleteBulkAction::make()
+                    ->label('Hapus Terpilih'),
             ]);
     }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
@@ -145,18 +109,8 @@ class PpdbRegistrationResource extends Resource
             'edit' => EditPpdbRegistration::route('/{record}/edit'),
         ];
     }
-      public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
-        return 'PPDB';
-    }
-
-    public static function getModelLabel(): string
-    {
-        return 'Data Pendaftaran';
-    }
-
-    public static function getPluralModelLabel(): string
-    {
-        return 'Daftar Data Pendaftaran';
+        return 'SPMB';
     }
 }

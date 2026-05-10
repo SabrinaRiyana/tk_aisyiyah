@@ -24,9 +24,9 @@ class PpdbSetting extends Page
     // Pakai cara ini biar PHP gak protes soal Type Hinting
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static ?string $navigationLabel = 'Setting PPDB';
+    protected static ?string $navigationLabel = 'Setting SPMB';
 
-    protected static ?string $title = 'Pengaturan PPDB';
+    protected static ?string $title = 'Pengaturan SPMB';
 
     protected string $view = 'filament.pages.ppdb-setting';
 
@@ -46,13 +46,13 @@ class PpdbSetting extends Page
                 Section::make('Status Sistem')
                     ->schema([
                         Toggle::make('is_active')
-                            ->label('PPDB Aktif (ON/OFF)')
+                            ->label('SPMB Aktif (ON/OFF)')
                             ->helperText('Jika ON, form pendaftaran muncul di web. Jika OFF, form disembunyikan.')
                             ->live(), 
                     ]),
 
-                Section::make('Pengaturan Saat PPDB TUTUP')
-                    ->description('Edit struktur form hanya bisa dilakukan saat PPDB sedang OFF.')
+                Section::make('Pengaturan Saat SPMB TUTUP')
+                    ->description('Edit struktur form hanya bisa dilakukan saat SPMB sedang OFF.')
                     ->schema([
                         Textarea::make('closed_message')
                             ->label('Pesan Penutupan')
@@ -102,6 +102,6 @@ class PpdbSetting extends Page
     }
     public static function getNavigationGroup(): ?string
     {
-        return 'PPDB';
+        return 'SPMB';
     }
 }

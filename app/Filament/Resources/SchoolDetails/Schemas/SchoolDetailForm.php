@@ -24,6 +24,7 @@ class SchoolDetailForm
                         ->directory('about'),
                     RichEditor::make('history')
                         ->label('Teks Sejarah/Deskripsi')
+                        ->toolbarButtons([])
                         ->required(),
                 ]),
             
