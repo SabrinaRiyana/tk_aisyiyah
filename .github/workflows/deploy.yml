@@ -2,58 +2,60 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: npm
 
-      - name: Install dependencies & build
-        run: |
-          npm ci
-          npm run build
+      - name: Install Node Dependencies
+        run: npm ci
+
+      - name: Build Vite Assets
+        run: npm run build
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
 
-      - name: Install Composer dependencies
+      - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      - name: Deploy via SSH (rsync)
-        uses: burntsushi/rsync-deployments@master  # atau pakai appleboy/ssh-action
-        # Alternatif lebih populer:
-      
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          password: ${{ secrets.VPS_PASS }}
           script: |
             cd /path/to/tkaisyiyah-mimika.sch.id/laravel
+
             git pull origin main
+
             composer install --no-dev --optimize-autoloader
+
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
 
-      - name: Upload built assets via SCP
+      - name: Upload Built Assets
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          password: ${{ secrets.VPS_PASS }}
           source: "public/build/"
           target: "/path/to/tkaisyiyah-mimika.sch.id/laravel/public/build/"
