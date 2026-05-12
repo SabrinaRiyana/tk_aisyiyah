@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "23"
           cache: npm
 
       - name: Install Node Dependencies
@@ -33,31 +33,38 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader
 
+      - name: Upload Built Assets via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: 65002
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASS }}
+          source: "public/build/*"
+          target: "/home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel/public/build/"
+
+      - name: Upload Vendor via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: 65002
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASS }}
+          source: "vendor/*"
+          target: "/home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel/vendor/"
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.VPS_HOST }}
+          host: 145.223.108.173
+          port: 65002
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PASS }}
-          port: 65002
           script: |
-            cd /home/u344492505/domains/tkaisyiyah-mimika.sch.id/public_html
-
+            cd /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel
             git pull origin main
-
-            composer install --no-dev --optimize-autoloader
-
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-
-      - name: Upload Built Assets
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          password: ${{ secrets.VPS_PASS }}
-          port: 65002
-          source: "public/build/*"
-          target: "/home/u344492505/domains/tkaisyiyah-mimika.sch.id/public_html/public/build/"
+            php artisan storage:link
