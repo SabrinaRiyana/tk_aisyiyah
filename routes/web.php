@@ -56,19 +56,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/profil', [TeacherController::class, 'index'])->name('profil');
 
-/* ================= STORAGE LINK (HAPUS SETELAH DIPAKAI) ================= */
-Route::get('/storage-link', function() {
-    Artisan::call('storage:link');
-    return 'Storage linked!';
-});
-
-/* ================= CLEAR CACHE (HAPUS SETELAH DIPAKAI) ================= */
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('config:clear');
-    return 'Cache cleared!';
-});
 
 /* ================= SITEMAP ================= */
 Route::get('/sitemap.xml', function () {
