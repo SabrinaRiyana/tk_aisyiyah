@@ -62,6 +62,7 @@ jobs:
           password: ${{ secrets.VPS_PASS }}
           script: |
             cd /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel
+            git stash
             git pull origin main
             php artisan migrate --force
             php artisan config:cache
