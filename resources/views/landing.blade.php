@@ -354,7 +354,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="footer-logo-row">
-                    <div class="footer-logo-circle"><img src="{{ asset('assets/images/Logo Tk.png') }}" alt="Logo TK Aisyiyah" /></div>
+                    <div class="footer-logo-circle"><img src="{{ asset('assets/images/Logo TK.png') }}" alt="Logo TK Aisyiyah" /></div>
                     <div class="footer-school-name">TK Aisyiyah<br>Mimika</div>
                 </div>
                 <p class="footer-tagline">Tempat aman dan nyaman untuk belajar sambil bermain bagi anak usia dini di Mimika, Papua Tengah.</p>

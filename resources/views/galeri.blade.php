@@ -271,7 +271,7 @@
     <div class="hero-bg-overlay"></div>
     <nav class="navbar" id="navbar">
       <div class="nav-logo" onclick="window.location.href='/'">
-        <div class="logo-wrapper"><img class="logo-img" src="{{ asset('assets/images/Logo Tk.png') }}" alt="Logo TK Aisyiyah" /></div>
+        <div class="logo-wrapper"><img class="logo-img" src="{{ asset('assets/images/Logo TK.png') }}" alt="Logo TK Aisyiyah" /></div>
         <span class="nav-brand">TK Aisyiyah Mimika</span>
       </div>
       <div class="nav-right">
@@ -348,7 +348,7 @@
         @foreach($suggestionsAll->take(6) as $s)
         <div class="testimonial-card">
           <div class="testimonial-card-header">
-            <img src="{{ asset('assets/images/Logo Tk.png') }}" alt="" class="testimonial-avatar" />
+            <img src="{{ asset('assets/images/Logo TK.png') }}" alt="" class="testimonial-avatar" />
             <div class="testimonial-info">
               <h3 class="testimonial-name">{{ $s->nama }}</h3>
               <p class="testimonial-role">Pengunjung Website</p>
@@ -400,7 +400,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo-row">
-          <div class="footer-logo-circle"><img src="{{ asset('assets/images/Logo Tk.png') }}" alt="Logo TK Aisyiyah" /></div>
+          <div class="footer-logo-circle"><img src="{{ asset('assets/images/Logo TK.png') }}" alt="Logo TK Aisyiyah" /></div>
           <div class="footer-school-name">TK Aisyiyah<br>Mimika</div>
         </div>
         <p class="footer-tagline">Tempat aman dan nyaman untuk belajar sambil bermain bagi anak usia dini di Mimika, Papua Tengah.</p>

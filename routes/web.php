@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\HomeController;
@@ -45,7 +46,7 @@ Route::post('/ppdb/check-pin', [PpdbController::class, 'checkPin'])
 
 /* ================= SUGGESTION ================= */
 
-Route::post('/suggestion', [SuggestionController::class, 'store']) ->name('suggestion.store');
+Route::post('/suggestion', [SuggestionController::class, 'store'])->name('suggestion.store');
 
 
 /* ================= HOME ================= */
@@ -55,4 +56,30 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/profil', [TeacherController::class, 'index'])->name('profil');
 
+/* ================= STORAGE LINK (HAPUS SETELAH DIPAKAI) ================= */
+Route::get('/storage-link', function() {
+    Artisan::call('storage:link');
+    return 'Storage linked!';
+});
 
+/* ================= SITEMAP ================= */
+Route::get('/sitemap.xml', function () {
+    $baseUrl = 'https://tkaisyiyah-mimika.sch.id';
+    $urls = [
+        ['loc' => $baseUrl . '/',       'priority' => '1.0', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/galeri',  'priority' => '0.8', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/profil',  'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => $baseUrl . '/ppdb',    'priority' => '0.9', 'changefreq' => 'monthly'],
+    ];
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    foreach ($urls as $url) {
+        $xml .= "  <url>\n";
+        $xml .= "    <loc>{$url['loc']}</loc>\n";
+        $xml .= "    <changefreq>{$url['changefreq']}</changefreq>\n";
+        $xml .= "    <priority>{$url['priority']}</priority>\n";
+        $xml .= "  </url>\n";
+    }
+    $xml .= '</urlset>';
+    return response($xml, 200)->header('Content-Type', 'text/xml');
+});
