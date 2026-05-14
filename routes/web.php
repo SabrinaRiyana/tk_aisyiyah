@@ -77,3 +77,18 @@ Route::get('/sitemap.xml', function () {
     $xml .= '</urlset>';
     return response($xml, 200)->header('Content-Type', 'text/xml');
 });
+
+Route::get('/fix-storage', function() {
+    $target = storage_path('app/public');
+    $link = public_path('storage');
+    
+    // Hapus symlink lama kalau ada
+    if (file_exists($link) || is_link($link)) {
+        unlink($link);
+    }
+    
+    // Buat symlink baru
+    symlink($target, $link);
+    
+    return 'Done! Target: ' . $target . ' | Link: ' . $link;
+});
