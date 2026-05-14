@@ -56,11 +56,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/profil', [TeacherController::class, 'index'])->name('profil');
 
-Route::get('/storage-link', function() {
-    Artisan::call('storage:link');
-    return 'Storage linked!';
-});
-
 /* ================= SITEMAP ================= */
 Route::get('/sitemap.xml', function () {
     $baseUrl = 'https://tkaisyiyah-mimika.sch.id';
