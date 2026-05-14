@@ -62,6 +62,14 @@ Route::get('/storage-link', function() {
     return 'Storage linked!';
 });
 
+/* ================= CLEAR CACHE (HAPUS SETELAH DIPAKAI) ================= */
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    return 'Cache cleared!';
+});
+
 /* ================= SITEMAP ================= */
 Route::get('/sitemap.xml', function () {
     $baseUrl = 'https://tkaisyiyah-mimika.sch.id';
