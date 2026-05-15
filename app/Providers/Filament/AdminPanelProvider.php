@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->brandName('TK Aisyiyah')
             ->darkMode(true)
-            ->brandLogo(asset('assets/images/Logo Tk.png'))
+            ->brandLogo(asset('assets/images/Logo TK.png'))
             ->brandLogoHeight('80px')
             ->colors([
                 'primary' => Color::Emerald,
