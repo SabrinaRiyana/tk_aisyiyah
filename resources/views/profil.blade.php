@@ -369,7 +369,7 @@
           <div class="footer-socials">
             <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Instagram">📸</a>
             <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Facebook">📘</a>
-            <a class="footer-social-btn" href="https://wa.me/{{ preg_replace('/\D/','',schoolInfo('telepon')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+            <a class="footer-social-btn" href="https://api.whatsapp.com/send/?phone=6281354172964&text=Halo%2C+saya+ingin+mendaftar+di+sekolah+TK+Aisyiyah+Mimika.&type=phone_number&app_absent=0&utm_source=chatgpt.com{{ preg_replace('/\D/','',schoolInfo('telepon')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
           </div>
         </div>
         <div class="footer-nav-col">
