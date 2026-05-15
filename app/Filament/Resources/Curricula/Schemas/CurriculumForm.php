@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources\Curricula\Schemas;
 
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
 
 class CurriculumForm
@@ -18,6 +16,7 @@ class CurriculumForm
                 FileUpload::make('image')
                     ->label('Foto Kurikulum')
                     ->image()
+                    ->disk('public')
                     ->directory('kurikulum')
                     ->required(),
                 TextInput::make('title')

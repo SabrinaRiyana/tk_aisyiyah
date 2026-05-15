@@ -110,7 +110,7 @@
   .btn-success-secondary { padding: 13px 26px; border: 2px solid #1fb149; border-radius: 100px; background: transparent; color: #1fb149; font-size: .92rem; font-weight: 700; cursor: pointer; transition: all .2s; }
   .btn-success-secondary:hover { background: #1fb149; color: #fff; }
 
-  /* ══ FOOTER BARU ══ */
+  /* ══ FOOTER ══ */
   .footer { background: linear-gradient(160deg, #006b22 0%, #009830 55%, #00b836 100%); color: #fff; font-family: "Segoe UI", Helvetica, Arial, sans-serif; padding: clamp(40px,5vw,60px) clamp(20px,5vw,60px) 0; margin-top: clamp(40px,6vw,72px); }
   .footer-top { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: clamp(28px,4vw,48px); padding-bottom: clamp(32px,4vw,48px); border-bottom: 1px solid rgba(255,255,255,0.15); }
   .footer-brand { display: flex; flex-direction: column; gap: 14px; }
@@ -186,9 +186,32 @@
   .toast-notif { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #1fb149; color: #fff; padding: 12px 24px; border-radius: 100px; font-size: .88rem; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 9999; }
   .toast-notif.show { opacity: 1; }
   .chatbot-typing span { height: 8px; width: 8px; background: #00cc30; border-radius: 50%; display: inline-block; margin-right: 4px; animation: chatTyping 1.4s infinite; }
-  .chatbot-typing span:nth-child(2){animation-delay:.2s;} 
+  .chatbot-typing span:nth-child(2){animation-delay:.2s;}
   .chatbot-typing span:nth-child(3){animation-delay:.4s;}
   @keyframes chatTyping{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-10px);}}
+
+  /* ══ MODAL KODE PIN ══ */
+  .modal-pin-overlay { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; padding: 20px; }
+  .modal-pin-overlay.open { display: flex; }
+  .modal-pin-box { background: #fff; border-radius: 20px; width: 100%; max-width: 420px; overflow: hidden; font-family: "Segoe UI", Helvetica, Arial, sans-serif; animation: modalIn .25s ease; }
+  @keyframes modalIn { from{opacity:0;transform:scale(0.95) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);} }
+  .modal-pin-header { background: #1fb149; padding: 22px 24px 20px; display: flex; align-items: center; gap: 14px; }
+  .modal-pin-header-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .modal-pin-header-text h3 { margin: 0; font-size: 17px; font-weight: 700; color: #fff; }
+  .modal-pin-header-text p { margin: 3px 0 0; font-size: 12.5px; color: rgba(255,255,255,0.75); }
+  .modal-pin-body { padding: 22px 24px 24px; }
+  .modal-info-row { background: #f8fdf8; border: 1px solid #e0f0e0; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
+  .modal-info-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .modal-info-icon.green { background: #e8f9ed; }
+  .modal-info-icon.blue  { background: #e8f0ff; }
+  .modal-info-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .modal-info-value { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .modal-divider { border: none; border-top: 1px solid #f0f5f0; margin: 18px 0; }
+  .modal-note { font-size: 13.5px; color: #666; line-height: 1.65; margin: 0 0 18px; }
+  .modal-btn-wa { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; padding: 14px; background: #25d366; color: #fff; border: none; border-radius: 12px; font-size: 14.5px; font-weight: 700; cursor: pointer; text-decoration: none; margin-bottom: 10px; transition: background .2s; box-sizing: border-box; }
+  .modal-btn-wa:hover { background: #1db954; }
+  .modal-btn-tutup { width: 100%; padding: 11px; background: none; border: 1.5px solid #e0e0e0; border-radius: 12px; font-size: 13.5px; color: #888; cursor: pointer; font-family: inherit; transition: background .2s, border-color .2s; }
+  .modal-btn-tutup:hover { background: #f8f8f8; border-color: #ccc; }
 
   @media (max-width: 768px) { .nav-right { display: none; } .nav-hamburger { display: flex; } }
 </style>
@@ -238,35 +261,61 @@
     <div class="langkah-card"><img src="{{ asset('assets/images/Akta.png') }}" alt="Akta Kelahiran" /><div class="langkah-card-overlay"><span>Akta Kelahiran Anak</span></div></div>
     <div class="langkah-card"><img src="{{ asset('assets/images/KTP.png') }}" alt="KTP Orang Tua" /><div class="langkah-card-overlay"><span>KTP Orang Tua / Wali</span></div></div>
   </div>
-  <!-- Tombol Beli Kode -->
-<button type="button" onclick="toggleModal('modalBeli')" class="btn-submit-form" style="background: #28a745; width: auto; padding: 15px 30px;">
-    BELI KODE PENDAFTARAN >
-</button>
 
-<!-- Modal Pop-up -->
-<div id="modalBeli" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
-    <div style="background:white; padding:30px; border-radius:15px; max-width:400px; width:90%; position:relative; text-align:left;">
-        <h3 style="margin-top:0; color:#28a745;">💳 Pembelian Kode PIN</h3>
-        <hr>
-        <p>Silakan lakukan pembayaran untuk mendapatkan kode pendaftaran:</p>
-        
-        <div style="background:#f8f9fa; padding:15px; border-radius:10px; margin:15px 0;">
-            <small>Harga Kode PIN:</small>
-            <div style="font-size:20px; font-weight:bold; color:#1a1a1a;">{{ schoolInfo('harga_pendaftaran') }}</div>
-            
-            <br>
-            <small>Transfer ke Rekening:</small>
-            <div style="font-weight:bold;">{{ schoolInfo('rekening') }}</div>
+  {{-- Tombol Beli Kode --}}
+  <button type="button" onclick="toggleModal('modalBeli')" class="btn-submit-form" style="width:auto; padding:15px 36px;">
+    BELI KODE PENDAFTARAN &rsaquo;
+  </button>
+
+  {{-- ══ MODAL PEMBELIAN KODE PIN (TAMPILAN BARU) ══ --}}
+  <div id="modalBeli" class="modal-pin-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal-pin-box">
+
+      {{-- Header --}}
+      <div class="modal-pin-header">
+        <div class="modal-pin-header-icon">💳</div>
+        <div class="modal-pin-header-text">
+          <h3>Pembelian Kode PIN</h3>
+          <p>Lakukan pembayaran untuk mendaftar</p>
+        </div>
+      </div>
+
+      {{-- Body --}}
+      <div class="modal-pin-body">
+
+        <div class="modal-info-row">
+          <div class="modal-info-icon green">🏷️</div>
+          <div>
+            <div class="modal-info-label">Harga Kode PIN</div>
+            <div class="modal-info-value">{{ schoolInfo('harga_pendaftaran') }}</div>
+          </div>
         </div>
 
-        <p>Setelah transfer, silakan konfirmasi ke Admin untuk mendapatkan kode:</p>
-        <a href="https://wa.me/{{ schoolInfo('telepon') }}" target="_blank" style="display:block; background:#25d366; color:white; text-align:center; padding:12px; border-radius:8px; text-decoration:none; font-weight:bold;">
-            Chat Admin WhatsApp 📱
+        <div class="modal-info-row">
+          <div class="modal-info-icon blue">🏦</div>
+          <div>
+            <div class="modal-info-label">Transfer ke Rekening</div>
+            <div class="modal-info-value">{{ schoolInfo('rekening') }}</div>
+          </div>
+        </div>
+
+        <hr class="modal-divider">
+
+        <p class="modal-note">
+          Setelah transfer, konfirmasi ke admin melalui WhatsApp untuk mendapatkan kode PIN pendaftaran.
+        </p>
+
+        <a href="https://wa.me/{{ preg_replace('/\D/', '', schoolInfo('telepon')) }}" target="_blank" class="modal-btn-wa">
+          💬&nbsp; Chat Admin WhatsApp
         </a>
 
-        <button onclick="toggleModal('modalBeli')" style="margin-top:15px; width:100%; background:none; border:none; color:#666; cursor:pointer;">Tutup</button>
+        <button class="modal-btn-tutup" onclick="toggleModal('modalBeli')">Tutup</button>
+
+      </div>
     </div>
-</div>
+  </div>
+  {{-- ══ END MODAL ══ --}}
+
 </section>
 
 <div class="page-wrapper" id="ppdbForm">
@@ -285,15 +334,12 @@
 
   @else
 
-    {{-- =========================
-      KONDISI 1: SUKSES DAFTAR
-    ========================== --}}
+    {{-- KONDISI 1: SUKSES DAFTAR --}}
     @if(session('form_success'))
         <div class="form-card" style="text-align: center; padding: 40px 20px;">
             <div style="font-size: 50px; margin-bottom: 20px;">✅</div>
             <h2 style="color: #1a1a1a; margin-bottom: 10px;">Pendaftaran Berhasil!</h2>
             <p style="color: #666; margin-bottom: 25px;">Data kamu sudah kami terima. Silakan simpan atau cetak bukti pendaftaran.</p>
-            
             <div style="display: flex; gap: 10px; justify-content: center;">
                 <a href="{{ route('ppdb.print', session('reg_id')) }}" target="_blank" class="btn-submit-form" style="background: #4a90e2; text-decoration: none;">
                     Print Bukti 📄
@@ -304,30 +350,25 @@
             </div>
         </div>
 
-    {{-- =========================
-          KONDISI 2: BELUM MASUK PIN
-    ========================== --}}
+    {{-- KONDISI 2: BELUM MASUK PIN --}}
     @elseif(!session('pin_valid'))
         <div class="form-card" style="margin-bottom:20px;">
             <div class="form-card-header">
                 <div class="form-card-title">🔑 Masukkan PIN PPDB</div>
                 <div class="form-card-sub">Silakan masukkan PIN yang sudah diberikan admin.</div>
             </div>
-
             <div class="form-card-body">
                 @if(session('error'))
                     <div style="background:#ffe5e5; color:#d11a2a; padding:12px; border-radius:10px; margin-bottom:15px; font-size:.9rem; font-weight:600;">
                         {{ session('error') }}
                     </div>
                 @endif
-
                 <form action="{{ route('ppdb.checkPin') }}" method="POST">
                     @csrf
                     <div class="form-field">
                         <label class="field-label">Kode PIN</label>
                         <input type="text" name="kode_pin" class="field-input" placeholder="Contoh: TKA-12345" required autofocus>
                     </div>
-
                     <div class="form-submit-wrap">
                         <button type="submit" class="btn-submit-form">Lanjutkan 🚀</button>
                     </div>
@@ -335,9 +376,7 @@
             </div>
         </div>
 
-    {{-- =========================
-          KONDISI 3: PIN VALID (TAMPIL FORM)
-    ========================== --}}
+    {{-- KONDISI 3: PIN VALID (TAMPIL FORM) --}}
     @else
         <div id="ppdbFormInner">
             <form action="{{ route('ppdb.store') }}" method="POST" enctype="multipart/form-data" id="mainPpdbForm">
@@ -347,9 +386,7 @@
                         <div class="form-card-title">📝 Formulir Pendaftaran PPDB</div>
                         <div class="form-card-sub">Isi data dengan benar. Tanda <span style="color:#a0ffb8;">*</span> wajib diisi.</div>
                     </div>
-
                     <div class="form-card-body">
-                      {{-- Progress Bar --}}
                       <div class="progress-wrap">
                           <div class="progress-label">
                               <span>Kelengkapan Form</span>
@@ -360,9 +397,9 @@
                           </div>
                       </div>
 
-                      @php 
+                      @php
                           $fields = $setting->form_fields ?? [];
-                          $perPage = 10; // Otomatis pecah setiap 10 inputan
+                          $perPage = 10;
                           $chunks = array_chunk($fields, $perPage);
                       @endphp
 
@@ -371,30 +408,28 @@
                               <div style="margin-bottom: 20px; font-weight: bold; color: #28a745;">
                                   Halaman {{ $pageIndex + 1 }} dari {{ count($chunks) }}
                               </div>
-                              
+
                               @foreach($chunk as $index => $field)
-                                  @php 
-                                      // Menghitung index unik agar ID preview tidak bentrok
-                                      $globalIndex = ($pageIndex * $perPage) + $index; 
+                                  @php
+                                      $globalIndex = ($pageIndex * $perPage) + $index;
                                   @endphp
                                   <div class="form-field">
                                       <label class="field-label">
                                           {{ $field['label'] }}
                                           {!! $field['required'] ? '<span style="color:red">*</span>' : '' !!}
                                       </label>
-
                                       @if($field['type'] == 'file')
                                           <div class="field-upload" onclick="this.querySelector('input').click()">
                                               <span class="field-upload-icon">📁</span>
                                               <div class="field-upload-text">Klik untuk <span>upload {{ $field['label'] }}</span></div>
                                               <div class="field-upload-preview" id="preview_{{ $globalIndex }}"></div>
-                                              <input type="file" name="files[{{ $field['label'] }}]" class="ppdb-input" 
-                                                    {{ $field['required'] ? 'required' : '' }} 
+                                              <input type="file" name="files[{{ $field['label'] }}]" class="ppdb-input"
+                                                    {{ $field['required'] ? 'required' : '' }}
                                                     onchange="updatePreview(this, 'preview_{{ $globalIndex }}')" style="display:none">
                                           </div>
                                       @else
-                                          <input type="{{ $field['type'] }}" name="payload[{{ $field['label'] }}]" 
-                                                class="field-input ppdb-input" placeholder="Masukkan {{ $field['label'] }}" 
+                                          <input type="{{ $field['type'] }}" name="payload[{{ $field['label'] }}]"
+                                                class="field-input ppdb-input" placeholder="Masukkan {{ $field['label'] }}"
                                                 {{ $field['required'] ? 'required' : '' }} oninput="calculateProgress()">
                                       @endif
                                   </div>
@@ -402,14 +437,12 @@
 
                               <div class="form-divider"></div>
 
-                              {{-- Navigasi Tombol --}}
                               <div style="display: flex; gap: 10px; margin-top: 20px;">
                                   @if($pageIndex > 0)
                                       <button type="button" onclick="changeStep({{ $pageIndex - 1 }})" class="btn-submit-form" style="background:#6c757d;">
                                           ⬅️ Sebelumnya
                                       </button>
                                   @endif
-
                                   @if($pageIndex < count($chunks) - 1)
                                       <button type="button" onclick="changeStep({{ $pageIndex + 1 }})" class="btn-submit-form">
                                           Selanjutnya ➡️
@@ -456,7 +489,7 @@
   </div>
 </div>
 
-{{-- ══ FOOTER BARU ══ --}}
+{{-- ══ FOOTER ══ --}}
 <footer class="footer">
   <div class="footer-top">
     <div class="footer-brand">
@@ -528,56 +561,141 @@
     <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ketik pertanyaan..." autocomplete="off" />
     <button class="chatbot-send" onclick="sendChatMessage()">Kirim</button>
   </div>
-    </div>
-  <button class="btn-back-to-top" id="backToTop" onclick="scrollToTop()">Back To The Top</button>
-  <div class="toast-notif" id="toastNotif"></div>
-  <div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
-    <div class="chatbot-toggle-icon" id="chatbotToggleIcon">💬</div>
-    <div class="chatbot-badge" id="chatbotBadge">1</div>
-  </div>
+</div>
+<button class="btn-back-to-top" id="backToTop" onclick="scrollToTop()">Back To The Top</button>
+<div class="toast-notif" id="toastNotif"></div>
+<div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+  <div class="chatbot-toggle-icon" id="chatbotToggleIcon">💬</div>
+  <div class="chatbot-badge" id="chatbotBadge">1</div>
+</div>
 
 <script>
   function toggleModal(id) {
-      const modal = document.getElementById(id);
-      modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
+    const modal = document.getElementById(id);
+    modal.classList.toggle('open');
+    document.body.style.overflow = modal.classList.contains('open') ? 'hidden' : '';
   }
+
+  function handleOverlayClick(e) {
+    if (e.target === e.currentTarget) toggleModal(e.currentTarget.id);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('modalBeli');
+      if (modal.classList.contains('open')) toggleModal('modalBeli');
+      closeMobileMenu();
+    }
+  });
 
   function changeStep(stepIndex) {
-      // Sembunyikan semua step/halaman form
-      document.querySelectorAll('.form-step').forEach(step => {
-          step.style.display = 'none';
-      });
-
-      // Tampilkan halaman yang dituju
-      const targetStep = document.getElementById('step-' + stepIndex);
-      if(targetStep) {
-          targetStep.style.display = 'block';
-          
-          // Scroll ke atas formulir supaya user gak bingung
-          const formContainer = document.getElementById('ppdbFormInner');
-          formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    document.querySelectorAll('.form-step').forEach(step => step.style.display = 'none');
+    const targetStep = document.getElementById('step-' + stepIndex);
+    if (targetStep) {
+      targetStep.style.display = 'block';
+      document.getElementById('ppdbFormInner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
-  //const mainForm = document.getElementById('mainPpdbForm');
-  //if(mainForm) { mainForm.addEventListener('submit', function(e){ e.preventDefault(); const formData = new FormData(this); fetch(this.action,{method:'POST',body:formData,headers:{'X-CSRF-TOKEN':document.querySelector('input[name="_token"]').value}}).then(r=>r.json()).then(data=>{ if(data.success){document.getElementById('ppdbFormInner').style.display='none';const s=document.getElementById('ppdbSuccess');s.style.display='block';s.scrollIntoView({behavior:'smooth',block:'start'});}else{alert('Ada kesalahan.');}}).catch(()=>alert('Terjadi error.')); }); }
-  function calculateProgress(){const inputs=document.querySelectorAll('.ppdb-input');let filled=0;inputs.forEach(i=>{if(i.type==='file'){if(i.files.length>0)filled++;}else{if(i.value.trim()!=='')filled++;}});const pct=inputs.length>0?Math.round((filled/inputs.length)*100):0;document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressPct').textContent=pct+'%';}
-  function updatePreview(input,previewId){if(input.files&&input.files[0]){document.getElementById(previewId).textContent='✅ '+input.files[0].name;calculateProgress();}}
-  window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('white-bg',window.pageYOffset>100);document.getElementById('backToTop').classList.toggle('show',window.pageYOffset>window.innerHeight/2);});
-  function toggleMobileMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
-  function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileMenu();});
-  function showToast(msg){const t=document.getElementById('toastNotif');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-  let isChatbotOpen=false,hasSeenWelcome=false;
-  const chatbotContainer=document.getElementById('chatbotContainer'),chatbotMessages=document.getElementById('chatbotMessages'),chatbotInput=document.getElementById('chatbotInput'),chatbotTyping=document.getElementById('chatbotTyping'),chatbotBadge=document.getElementById('chatbotBadge'),chatbotToggleIcon=document.getElementById('chatbotToggleIcon');
-  function toggleChatbot(){isChatbotOpen=!isChatbotOpen;if(isChatbotOpen){chatbotContainer.classList.add('show');chatbotToggleIcon.textContent='✕';chatbotBadge.style.display='none';chatbotInput.focus();hasSeenWelcome=true;}else{chatbotContainer.classList.remove('show');chatbotToggleIcon.textContent='💬';}}
-  setTimeout(()=>{if(!hasSeenWelcome&&!isChatbotOpen)chatbotBadge.style.display='flex';},5000);
-  const botResponses={'halo':'Halo! 👋 Ada yang bisa saya bantu?','ppdb':'Untuk info PPDB 2027/2028:\n📞 Hubungi sekolah\n📋 Isi form di halaman ini!','biaya':'💰 Biaya pendidikan sangat terjangkau. Hubungi kami untuk info lengkap.','lokasi':'📍 Cek Google Maps di footer halaman ini!','terima kasih':'Sama-sama! 😊'};
-  function addChatMessage(msg,isUser){const d=document.createElement('div');d.className=`chatbot-message ${isUser?'user':'bot'}`;const b=document.createElement('div');b.className='chatbot-message-bubble';b.innerHTML=msg.replace(/\n/g,'<br>');d.appendChild(b);chatbotMessages.insertBefore(d,chatbotTyping);chatbotMessages.scrollTop=chatbotMessages.scrollHeight;}
-  function getBotResponse(msg){const l=msg.toLowerCase();for(let k in botResponses){if(l.includes(k))return botResponses[k];}return 'Terima kasih! Silakan hubungi sekolah kami.';}
-  function sendChatMessage(){const m=chatbotInput.value.trim();if(!m)return;addChatMessage(m,true);chatbotInput.value='';chatbotTyping.style.display='block';setTimeout(()=>{chatbotTyping.style.display='none';addChatMessage(getBotResponse(m),false);},600+Math.random()*600);}
-  function sendQuickReply(t){chatbotInput.value=t;sendChatMessage();}
-  chatbotInput.addEventListener('keypress',e=>{if(e.key==='Enter')sendChatMessage();});
 
+  function calculateProgress() {
+    const inputs = document.querySelectorAll('.ppdb-input');
+    let filled = 0;
+    inputs.forEach(i => {
+      if (i.type === 'file') { if (i.files.length > 0) filled++; }
+      else { if (i.value.trim() !== '') filled++; }
+    });
+    const pct = inputs.length > 0 ? Math.round((filled / inputs.length) * 100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function updatePreview(input, previewId) {
+    if (input.files && input.files[0]) {
+      document.getElementById(previewId).textContent = '✅ ' + input.files[0].name;
+      calculateProgress();
+    }
+  }
+
+  function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('white-bg', window.pageYOffset > 100);
+    document.getElementById('backToTop').classList.toggle('show', window.pageYOffset > window.innerHeight / 2);
+  });
+
+  function toggleMobileMenu() {
+    const m = document.getElementById('mobileMenu'), h = document.getElementById('hamburger');
+    m.classList.toggle('open'); h.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toastNotif');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  let isChatbotOpen = false, hasSeenWelcome = false;
+  const chatbotContainer = document.getElementById('chatbotContainer'),
+        chatbotMessages = document.getElementById('chatbotMessages'),
+        chatbotInput = document.getElementById('chatbotInput'),
+        chatbotTyping = document.getElementById('chatbotTyping'),
+        chatbotBadge = document.getElementById('chatbotBadge'),
+        chatbotToggleIcon = document.getElementById('chatbotToggleIcon');
+
+  function toggleChatbot() {
+    isChatbotOpen = !isChatbotOpen;
+    if (isChatbotOpen) {
+      chatbotContainer.classList.add('show'); chatbotToggleIcon.textContent = '✕';
+      chatbotBadge.style.display = 'none'; chatbotInput.focus(); hasSeenWelcome = true;
+    } else {
+      chatbotContainer.classList.remove('show'); chatbotToggleIcon.textContent = '💬';
+    }
+  }
+
+  setTimeout(() => { if (!hasSeenWelcome && !isChatbotOpen) chatbotBadge.style.display = 'flex'; }, 5000);
+
+  const botResponses = {
+    'halo': 'Halo! 👋 Ada yang bisa saya bantu?',
+    'ppdb': 'Untuk info PPDB 2027/2028:\n📞 Hubungi sekolah\n📋 Isi form di halaman ini!',
+    'biaya': '💰 Biaya pendidikan sangat terjangkau. Hubungi kami untuk info lengkap.',
+    'lokasi': '📍 Cek Google Maps di footer halaman ini!',
+    'terima kasih': 'Sama-sama! 😊'
+  };
+
+  function addChatMessage(msg, isUser) {
+    const d = document.createElement('div');
+    d.className = `chatbot-message ${isUser ? 'user' : 'bot'}`;
+    const b = document.createElement('div');
+    b.className = 'chatbot-message-bubble';
+    b.innerHTML = msg.replace(/\n/g, '<br>');
+    d.appendChild(b);
+    chatbotMessages.insertBefore(d, chatbotTyping);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function getBotResponse(msg) {
+    const l = msg.toLowerCase();
+    for (let k in botResponses) { if (l.includes(k)) return botResponses[k]; }
+    return 'Terima kasih! Silakan hubungi sekolah kami.';
+  }
+
+  function sendChatMessage() {
+    const m = chatbotInput.value.trim();
+    if (!m) return;
+    addChatMessage(m, true); chatbotInput.value = '';
+    chatbotTyping.style.display = 'block';
+    setTimeout(() => { chatbotTyping.style.display = 'none'; addChatMessage(getBotResponse(m), false); }, 600 + Math.random() * 600);
+  }
+
+  function sendQuickReply(t) { chatbotInput.value = t; sendChatMessage(); }
+  chatbotInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendChatMessage(); });
 </script>
 </body>
 </html>
