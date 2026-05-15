@@ -185,6 +185,10 @@
   .btn-back-to-top.show { opacity: 1; pointer-events: auto; }
   .toast-notif { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #1fb149; color: #fff; padding: 12px 24px; border-radius: 100px; font-size: .88rem; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 9999; }
   .toast-notif.show { opacity: 1; }
+  .chatbot-typing span { height: 8px; width: 8px; background: #00cc30; border-radius: 50%; display: inline-block; margin-right: 4px; animation: chatTyping 1.4s infinite; }
+  .chatbot-typing span:nth-child(2){animation-delay:.2s;} 
+  .chatbot-typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes chatTyping{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-10px);}}
 
   @media (max-width: 768px) { .nav-right { display: none; } .nav-hamburger { display: flex; } }
 </style>
@@ -509,10 +513,6 @@
   </div>
 </footer>
 
-<div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
-  <div class="chatbot-toggle-icon" id="chatbotToggleIcon">💬</div>
-  <div class="chatbot-badge" id="chatbotBadge">1</div>
-</div>
 <div class="chatbot-container" id="chatbotContainer">
   <div class="chatbot-header"><div class="chatbot-header-content"><div class="chatbot-avatar">🤖</div><div class="chatbot-header-text"><h3>Asisten TK Aisyiyah</h3><p>Online – Siap membantu</p></div></div><button class="chatbot-minimize" onclick="toggleChatbot()">−</button></div>
   <div class="chatbot-messages" id="chatbotMessages">
@@ -528,9 +528,13 @@
     <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ketik pertanyaan..." autocomplete="off" />
     <button class="chatbot-send" onclick="sendChatMessage()">Kirim</button>
   </div>
-</div>
-<button class="btn-back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back To Top ⌃</button>
-<div class="toast-notif" id="toastNotif"></div>
+    </div>
+  <button class="btn-back-to-top" id="backToTop" onclick="scrollToTop()">Back To The Top</button>
+  <div class="toast-notif" id="toastNotif"></div>
+  <div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+    <div class="chatbot-toggle-icon" id="chatbotToggleIcon">💬</div>
+    <div class="chatbot-badge" id="chatbotBadge">1</div>
+  </div>
 
 <script>
   function toggleModal(id) {
