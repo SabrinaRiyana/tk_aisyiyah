@@ -311,7 +311,7 @@
                         @if($schoolDetail && $schoolDetail->image_path)
                             <img src="{{ asset('storage/' . $schoolDetail->image_path) }}" alt="Foto TK Aisyiyah" />
                         @else
-                            <img src="{{ asset('assets/images/Berkumpul2.png') }}" alt="Foto TK Aisyiyah" />
+                            <img src="{{ asset('assets/images/berkumpul.jpg') }}" alt="Foto TK Aisyiyah" />
                         @endif
                     </div>
                     <div class="deco-sq"></div>

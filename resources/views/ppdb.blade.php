@@ -232,7 +232,7 @@
   <div class="langkah-cards">
     <div class="langkah-card"><img src="{{ asset('assets/images/kk.png') }}" alt="Kartu Keluarga" /><div class="langkah-card-overlay"><span>Kartu Keluarga</span></div></div>
     <div class="langkah-card"><img src="{{ asset('assets/images/Akta.png') }}" alt="Akta Kelahiran" /><div class="langkah-card-overlay"><span>Akta Kelahiran Anak</span></div></div>
-    <div class="langkah-card"><img src="{{ asset('assets/images/ktp.png') }}" alt="KTP Orang Tua" /><div class="langkah-card-overlay"><span>KTP Orang Tua / Wali</span></div></div>
+    <div class="langkah-card"><img src="{{ asset('assets/images/KTP.png') }}" alt="KTP Orang Tua" /><div class="langkah-card-overlay"><span>KTP Orang Tua / Wali</span></div></div>
   </div>
   <!-- Tombol Beli Kode -->
 <button type="button" onclick="toggleModal('modalBeli')" class="btn-submit-form" style="background: #28a745; width: auto; padding: 15px 30px;">
