@@ -28,7 +28,6 @@ class PpdbRegistrationResource extends Resource
     public static function form(Schema $schema): Schema
     {
         $setting = PpdbSetting::first();
-        dd($setting->form_fields);
 
         $fields = [];
 
