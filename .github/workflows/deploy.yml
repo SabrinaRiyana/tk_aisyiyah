@@ -65,7 +65,7 @@ jobs:
             git stash
             git pull origin main
             php artisan migrate --force
-            php artisan storage:link --force
+            ln -sfn /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel/storage/app/public /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel/public/storage
             chmod -R 775 storage
             chmod -R 775 bootstrap/cache
             php artisan config:cache
