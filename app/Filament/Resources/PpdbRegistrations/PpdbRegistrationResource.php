@@ -28,6 +28,8 @@ class PpdbRegistrationResource extends Resource
     public static function form(Schema $schema): Schema
     {
         $setting = PpdbSetting::first();
+        dd($setting->form_fields);
+
         $fields = [];
 
         if ($setting && $setting->form_fields) {
@@ -87,7 +89,6 @@ class PpdbRegistrationResource extends Resource
                 \Filament\Actions\DeleteAction::make()
                     ->label('Hapus'),
             ])
-
             ->headerActions([
                 \pxlrbt\FilamentExcel\Actions\Tables\ExportAction::make()
                     ->label('Export Excel')
@@ -101,6 +102,7 @@ class PpdbRegistrationResource extends Resource
                     ->label('Hapus Terpilih'),
             ]);
     }
+
     public static function getPages(): array
     {
         return [
@@ -109,6 +111,7 @@ class PpdbRegistrationResource extends Resource
             'edit' => EditPpdbRegistration::route('/{record}/edit'),
         ];
     }
+
     public static function getNavigationGroup(): ?string
     {
         return 'SPMB';
