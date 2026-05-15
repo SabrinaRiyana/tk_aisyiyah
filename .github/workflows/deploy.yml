@@ -60,12 +60,12 @@ jobs:
           port: 65002
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PASS }}
+          script: |
             cd /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel
             git stash
             git pull origin main
             php artisan migrate --force
-            rm -rf public/storage
-            ln -s /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel/storage/app/public /home/u344492505/domains/tkaisyiyah-mimika.sch.id/laravel/public/storage
+            php artisan storage:link
             chmod -R 777 storage
             chmod -R 777 bootstrap/cache
             php artisan config:cache
