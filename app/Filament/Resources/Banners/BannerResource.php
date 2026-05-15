@@ -60,6 +60,7 @@ class BannerResource extends Resource
 
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
+                    ->disk('public')
                     ->circular(),
             ])
             ->actions([
