@@ -78,7 +78,3 @@ Route::get('/sitemap.xml', function () {
     return response($xml, 200)->header('Content-Type', 'text/xml');
 });
 
-Route::get('/fix-storage', function() {
-    Artisan::call('storage:link');
-    return Artisan::output();
-});

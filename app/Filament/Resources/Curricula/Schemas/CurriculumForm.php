@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Curricula\Schemas;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TextArea;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
 
@@ -23,7 +23,7 @@ class CurriculumForm
                 TextInput::make('title')
                     ->label('Judul Kurikulum')
                     ->required(),
-                TextArea::make('description')
+                Textarea::make('description')
                     ->label('Deskripsi')
                     ->required()
                     ->columnSpanFull(),
