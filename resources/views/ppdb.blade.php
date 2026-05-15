@@ -282,20 +282,20 @@
 
       {{-- Body --}}
       <div class="modal-pin-body">
-
+        
         <div class="modal-info-row">
           <div class="modal-info-icon green">🏷️</div>
           <div>
-            <div class="modal-info-label">Harga Kode PIN : 100.000</div>
-            <div class="modal-info-value">{{ schoolInfo('harga_pendaftaran') }}</div>
+            <div class="modal-info-label">Harga Kode PIN</div>
+            <div class="modal-info-value">Rp 100.000</div>
           </div>
         </div>
 
         <div class="modal-info-row">
           <div class="modal-info-icon blue">🏦</div>
           <div>
-            <div class="modal-info-label">Transfer ke Rekening : (Parliyah BRI : 210001001574539)</div>
-            <div class="modal-info-value">{{ schoolInfo('rekening') }}</div>
+            <div class="modal-info-label">Transfer ke Rekening</div>
+            <div class="modal-info-value">Parliyah BRI : 210001001574539</div>
           </div>
         </div>
 
