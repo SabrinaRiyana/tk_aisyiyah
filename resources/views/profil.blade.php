@@ -82,18 +82,14 @@
       padding: clamp(40px, 6vw, 72px) 0;
       position: relative; overflow: hidden;
     }
-    .section-syarat::before {
-      content: ''; position: absolute; top: -80px; right: -80px;
-      width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(31,177,73,.10) 0%, transparent 70%);
-      pointer-events: none;
+    /* Decorative SVG leaf shapes */
+    .syarat-leaf {
+      position: absolute; pointer-events: none; z-index: 0;
     }
-    .section-syarat::after {
-      content: ''; position: absolute; bottom: -60px; left: -60px;
-      width: 240px; height: 240px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(31,177,73,.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .syarat-leaf-1 { top: -20px; left: -70px; width: clamp(180px,20vw,280px); opacity: .55; transform: rotate(-25deg); }
+    .syarat-leaf-2 { top: 0; right: -55px; width: clamp(130px,14vw,210px); opacity: .45; transform: rotate(18deg); }
+    .syarat-leaf-3 { bottom: -30px; right: 18%; width: clamp(90px,9vw,140px); opacity: .35; transform: rotate(-8deg); }
+    .syarat-leaf-4 { bottom: 20px; left: -30px; width: clamp(100px,10vw,160px); opacity: .30; transform: rotate(35deg); }
     .syarat-inner { max-width: 1300px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 60px); position: relative; z-index: 1; }
 
     /* Label atas */
@@ -483,6 +479,20 @@
 
     {{-- ===== SYARAT PENDAFTARAN ===== --}}
     <section class="section-syarat" id="syarat-pendaftaran">
+      {{-- Decorative leaf shapes --}}
+      <svg class="syarat-leaf syarat-leaf-1" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,60 Q50,-20 190,10 Q160,110 10,60 Z" fill="#1fb149"/>
+      </svg>
+      <svg class="syarat-leaf syarat-leaf-2" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M190,60 Q150,-20 10,10 Q40,110 190,60 Z" fill="#178c3a"/>
+      </svg>
+      <svg class="syarat-leaf syarat-leaf-3" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,60 Q50,-20 190,10 Q160,110 10,60 Z" fill="#2ed463"/>
+      </svg>
+      <svg class="syarat-leaf syarat-leaf-4" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M190,60 Q150,-20 10,10 Q40,110 190,60 Z" fill="#0e7230"/>
+      </svg>
+
       <div class="syarat-inner">
         <div class="syarat-section-label">Profil Sekolah &nbsp;›&nbsp; Syarat Pendaftaran</div>
         <h2 class="syarat-section-title">SYARAT <em>PENDAFTARAN</em></h2>
@@ -491,6 +501,7 @@
 
           {{-- USIA --}}
           <div class="syarat-card">
+            <div class="syarat-card-icon-wrap">🎂</div>
             <div class="syarat-card-label">USIA</div>
             <ul class="syarat-list">
               <li><span class="syarat-tag">TK A</span> 4–5 Tahun per 1 Juli 2026</li>
@@ -500,6 +511,7 @@
 
           {{-- DOKUMEN --}}
           <div class="syarat-card">
+            <div class="syarat-card-icon-wrap">📄</div>
             <div class="syarat-card-label">DOKUMEN</div>
             <ul class="syarat-list">
               <li>Fotocopy Akta Kelahiran (2 lembar)</li>
@@ -511,9 +523,10 @@
 
           {{-- BIAYA --}}
           <div class="syarat-card">
+            <div class="syarat-card-icon-wrap">💰</div>
             <div class="syarat-card-label">BIAYA ADMINISTRASI</div>
             <div class="syarat-biaya-grid">
-              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 100.000</span></div>
+              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 50.000</span></div>
               <div class="syarat-biaya-divider"></div>
               <div class="syarat-biaya-row syarat-biaya-group"><span>Infak Gedung – Tahap 1</span><span class="syarat-biaya-val">Rp 1.250.000</span></div>
               <div class="syarat-biaya-row syarat-biaya-group-last"><span>Infak Gedung – Tahap 2</span><span class="syarat-biaya-val">Rp 1.500.000</span></div>
