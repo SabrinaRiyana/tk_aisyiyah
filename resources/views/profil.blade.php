@@ -82,14 +82,34 @@
       padding: clamp(40px, 6vw, 72px) 0;
       position: relative; overflow: hidden;
     }
-    /* Decorative SVG leaf shapes */
-    .syarat-leaf {
-      position: absolute; pointer-events: none; z-index: 0;
+    /* Decorative Union leaf shapes — same as homepage */
+    .syarat-box { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none; }
+    .syarat-box .s-union { position: absolute; object-fit: fill; }
+    .syarat-box .s-union-green {
+      top: 0; left: 0; width: clamp(130px,18vw,260px); height: auto;
+      filter: brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(600%) hue-rotate(100deg) brightness(.85);
+      animation: syaratLeafFloat 5s ease-in-out infinite;
+      opacity: .55;
     }
-    .syarat-leaf-1 { top: -20px; left: -70px; width: clamp(180px,20vw,280px); opacity: .55; transform: rotate(-25deg); }
-    .syarat-leaf-2 { top: 0; right: -55px; width: clamp(130px,14vw,210px); opacity: .45; transform: rotate(18deg); }
-    .syarat-leaf-3 { bottom: -30px; right: 18%; width: clamp(90px,9vw,140px); opacity: .35; transform: rotate(-8deg); }
-    .syarat-leaf-4 { bottom: 20px; left: -30px; width: clamp(100px,10vw,160px); opacity: .30; transform: rotate(35deg); }
+    .syarat-box .s-union-red {
+      top: clamp(20px,5vw,60px); right: 0; width: clamp(100px,14vw,200px); height: auto;
+      filter: brightness(0) saturate(100%) invert(15%) sepia(90%) saturate(700%) hue-rotate(345deg) brightness(.9);
+      animation: syaratLeafFloat 4s ease-in-out infinite; animation-delay: 1s;
+      opacity: .45;
+    }
+    .syarat-box .s-union-blue {
+      bottom: clamp(20px,5vw,60px); left: clamp(4px,1vw,16px); width: clamp(100px,14vw,200px); height: auto;
+      filter: brightness(0) saturate(100%) invert(25%) sepia(90%) saturate(800%) hue-rotate(210deg) brightness(.9);
+      animation: syaratLeafFloat 6s ease-in-out infinite; animation-delay: 0.5s;
+      opacity: .35;
+    }
+    .syarat-box .s-union-yellow {
+      bottom: 0; right: 0; width: clamp(140px,20vw,320px); height: auto;
+      filter: brightness(0) saturate(100%) invert(95%) sepia(60%) saturate(500%) hue-rotate(5deg) brightness(1.05);
+      animation: syaratLeafFloat 5.5s ease-in-out infinite; animation-delay: 2s;
+      opacity: .40;
+    }
+    @keyframes syaratLeafFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-16px);} }
     .syarat-inner { max-width: 1300px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 60px); position: relative; z-index: 1; }
 
     /* Label atas */
@@ -479,19 +499,13 @@
 
     {{-- ===== SYARAT PENDAFTARAN ===== --}}
     <section class="section-syarat" id="syarat-pendaftaran">
-      {{-- Decorative leaf shapes --}}
-      <svg class="syarat-leaf syarat-leaf-1" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10,60 Q50,-20 190,10 Q160,110 10,60 Z" fill="#1fb149"/>
-      </svg>
-      <svg class="syarat-leaf syarat-leaf-2" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M190,60 Q150,-20 10,10 Q40,110 190,60 Z" fill="#178c3a"/>
-      </svg>
-      <svg class="syarat-leaf syarat-leaf-3" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10,60 Q50,-20 190,10 Q160,110 10,60 Z" fill="#2ed463"/>
-      </svg>
-      <svg class="syarat-leaf syarat-leaf-4" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M190,60 Q150,-20 10,10 Q40,110 190,60 Z" fill="#0e7230"/>
-      </svg>
+      {{-- Decorative Union shapes (same assets as homepage) --}}
+      <div class="syarat-box">
+        <img class="s-union s-union-green" src="{{ asset('assets/images/Union-hijau.png') }}" alt="" />
+        <img class="s-union s-union-red"   src="{{ asset('assets/images/Union-merah.png') }}" alt="" />
+        <img class="s-union s-union-blue"  src="{{ asset('assets/images/Union-biru.png') }}"  alt="" />
+        <img class="s-union s-union-yellow" src="{{ asset('assets/images/Union-kuning.png') }}" alt="" />
+      </div>
 
       <div class="syarat-inner">
         <div class="syarat-section-label">Profil Sekolah &nbsp;›&nbsp; Syarat Pendaftaran</div>
@@ -501,7 +515,6 @@
 
           {{-- USIA --}}
           <div class="syarat-card">
-            <div class="syarat-card-icon-wrap">🎂</div>
             <div class="syarat-card-label">USIA</div>
             <ul class="syarat-list">
               <li><span class="syarat-tag">TK A</span> 4–5 Tahun per 1 Juli 2026</li>
@@ -511,7 +524,6 @@
 
           {{-- DOKUMEN --}}
           <div class="syarat-card">
-            <div class="syarat-card-icon-wrap">📄</div>
             <div class="syarat-card-label">DOKUMEN</div>
             <ul class="syarat-list">
               <li>Fotocopy Akta Kelahiran (2 lembar)</li>
@@ -523,10 +535,9 @@
 
           {{-- BIAYA --}}
           <div class="syarat-card">
-            <div class="syarat-card-icon-wrap">💰</div>
             <div class="syarat-card-label">BIAYA ADMINISTRASI</div>
             <div class="syarat-biaya-grid">
-              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 50.000</span></div>
+              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 100.000</span></div>
               <div class="syarat-biaya-divider"></div>
               <div class="syarat-biaya-row syarat-biaya-group"><span>Infak Gedung – Tahap 1</span><span class="syarat-biaya-val">Rp 1.250.000</span></div>
               <div class="syarat-biaya-row syarat-biaya-group-last"><span>Infak Gedung – Tahap 2</span><span class="syarat-biaya-val">Rp 1.500.000</span></div>
