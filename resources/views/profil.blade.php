@@ -75,120 +75,180 @@
     .vm-misi-card-text { font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; color: #fff; font-weight: 500; }
 
     /* =====================================================
-       SECTION SYARAT PENDAFTARAN
+       SECTION SYARAT PENDAFTARAN — redesigned premium
        ===================================================== */
-    .section-syarat { background: #f4fbf4; padding: 0; }
-    .syarat-inner { max-width: 1300px; margin: 0 auto; }
+    .section-syarat {
+      background: linear-gradient(160deg, #f0faf3 0%, #e8f8ed 50%, #f4fbf4 100%);
+      padding: clamp(40px, 6vw, 72px) 0;
+      position: relative; overflow: hidden;
+    }
+    .section-syarat::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,177,73,.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .section-syarat::after {
+      content: ''; position: absolute; bottom: -60px; left: -60px;
+      width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,177,73,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .syarat-inner { max-width: 1300px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 60px); position: relative; z-index: 1; }
 
-    /* Header – selaras dengan vm-header */
-    .syarat-header {
-      background: linear-gradient(102deg, #0e7230 0%, #178c3a 50%, #1fb149 100%);
-      padding: clamp(18px, 3vw, 36px) clamp(20px, 6vw, 80px);
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 20px; flex-wrap: wrap;
+    /* Label atas */
+    .syarat-section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1fb149; color: #fff;
+      font-size: clamp(.7rem, 1vw, .78rem); font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(31,177,73,.3);
     }
-    .syarat-header-badge {
-      font-size: clamp(.82rem, 1.5vw, 1.2rem);
-      color: rgba(255,255,255,.85);
-    }
-    .syarat-header-title {
+    .syarat-section-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #b6ffd0; flex-shrink: 0; }
+
+    /* Judul besar */
+    .syarat-section-title {
       font-family: "Coolvetica-Regular","Arial Black",sans-serif;
-      font-size: clamp(1.4rem, 3.5vw, 3rem);
-      font-weight: 900; color: #fff;
+      font-size: clamp(1.6rem, 4vw, 3rem); font-weight: 900; color: #0e7230;
+      margin-bottom: clamp(28px, 4vw, 48px); line-height: 1.15;
     }
+    .syarat-section-title em { font-style: normal; color: #1fb149; }
 
-    /* Tiga kartu */
+    /* Grid tiga kartu */
     .syarat-body {
       display: grid;
-      grid-template-columns: 1fr 1.2fr 1.6fr;
-      gap: 0;
-      background: #fff;
-      border-bottom: 2px solid #e0f4e0;
+      grid-template-columns: 1fr 1.15fr 1.65fr;
+      gap: clamp(16px, 2.5vw, 28px);
+      align-items: start;
+      margin-bottom: clamp(24px, 3.5vw, 40px);
     }
     .syarat-card {
-      padding: clamp(24px, 4vw, 48px) clamp(18px, 3.5vw, 40px);
-      border-right: 2px solid #e0f4e0;
-      display: flex; flex-direction: column; gap: 16px;
+      background: #fff;
+      border-radius: 24px;
+      padding: clamp(24px, 3.5vw, 40px) clamp(20px, 3vw, 34px);
+      display: flex; flex-direction: column; gap: 18px;
+      box-shadow: 0 4px 24px rgba(20,130,50,.09), 0 1px 4px rgba(0,0,0,.05);
+      border: 1.5px solid rgba(31,177,73,.12);
+      transition: transform .3s, box-shadow .3s;
+      position: relative; overflow: hidden;
     }
-    .syarat-card:last-child { border-right: none; }
-    .syarat-card-icon { font-size: 2rem; line-height: 1; }
+    .syarat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, #1fb149, #2ed463);
+      border-radius: 24px 24px 0 0;
+    }
+    .syarat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(20,130,50,.16), 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    /* Icon wrapper */
+    .syarat-card-icon-wrap {
+      width: 52px; height: 52px; border-radius: 16px;
+      background: linear-gradient(135deg, #e8f8ed, #d0f4dc);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(31,177,73,.15);
+    }
     .syarat-card-label {
       font-family: "Coolvetica-Regular","Arial Black",sans-serif;
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
-      font-weight: 900; color: #1fb149;
-      letter-spacing: .5px;
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      font-weight: 900; color: #0e7230;
+      letter-spacing: .3px;
     }
+
+    /* List item */
     .syarat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
     .syarat-list li {
-      font-size: clamp(.88rem, 1.3vw, 1rem);
-      color: #444; line-height: 1.6;
-      padding-left: 18px; position: relative;
+      font-size: clamp(.85rem, 1.2vw, .97rem); color: #444; line-height: 1.65;
+      display: flex; align-items: flex-start; gap: 10px;
     }
     .syarat-list li::before {
-      content: '•'; position: absolute; left: 0;
-      color: #1fb149; font-weight: 900; font-size: 1.1rem; line-height: 1.5;
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #1fb149; flex-shrink: 0; margin-top: 7px;
     }
-    .syarat-list li em { color: #999; font-style: italic; font-size: .9em; }
+    .syarat-list li em { color: #aaa; font-style: italic; font-size: .88em; }
     .syarat-tag {
-      display: inline-block;
-      background: #1fb149; color: #fff;
-      font-size: .72rem; font-weight: 800;
-      padding: 2px 8px; border-radius: 100px;
+      display: inline-flex; align-items: center;
+      background: linear-gradient(135deg, #1fb149, #2ed463); color: #fff;
+      font-size: .68rem; font-weight: 800;
+      padding: 3px 10px; border-radius: 100px;
       margin-right: 6px; letter-spacing: .5px;
-      vertical-align: middle;
+      white-space: nowrap; flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(31,177,73,.3);
     }
 
     /* Biaya grid */
-    .syarat-biaya-grid { display: flex; flex-direction: column; gap: 8px; }
+    .syarat-biaya-grid { display: flex; flex-direction: column; gap: 0; }
     .syarat-biaya-row {
       display: flex; justify-content: space-between; align-items: center;
-      font-size: clamp(.82rem, 1.2vw, .95rem); color: #444;
-      padding: 7px 0; border-bottom: 1px solid #f0f0f0;
+      font-size: clamp(.8rem, 1.15vw, .92rem); color: #555;
+      padding: 9px 12px; border-radius: 10px;
+      transition: background .2s;
     }
-    .syarat-biaya-row:last-child { border-bottom: none; }
+    .syarat-biaya-row:hover { background: #f4fbf4; }
     .syarat-biaya-val {
       font-weight: 700; color: #1fb149;
       white-space: nowrap; margin-left: 12px;
+      font-size: clamp(.82rem, 1.2vw, .95rem);
     }
-    .syarat-biaya-group { padding-left: 14px; color: #666; font-size: clamp(.78rem, 1.1vw, .88rem); }
-    .syarat-biaya-group-last { padding-left: 14px; color: #666; font-size: clamp(.78rem, 1.1vw, .88rem); }
+    .syarat-biaya-group { padding-left: 26px; color: #888; font-size: clamp(.76rem, 1.05vw, .86rem); }
+    .syarat-biaya-group-last { padding-left: 26px; color: #888; font-size: clamp(.76rem, 1.05vw, .86rem); }
+    .syarat-biaya-divider {
+      height: 1px; background: #eef7f0; margin: 4px 0;
+    }
 
     /* Contact bar */
     .syarat-contact {
-      background: linear-gradient(102deg, #0e7230 0%, #1fb149 100%);
-      padding: clamp(20px, 3vw, 32px) clamp(20px, 6vw, 80px);
-      display: flex; align-items: center; gap: clamp(20px, 5vw, 60px);
+      background: linear-gradient(102deg, #0a5c24 0%, #0e7230 40%, #1fb149 100%);
+      border-radius: 20px;
+      padding: clamp(20px, 3vw, 32px) clamp(24px, 5vw, 52px);
+      display: flex; align-items: center; gap: clamp(16px, 4vw, 48px);
       flex-wrap: wrap;
+      box-shadow: 0 8px 32px rgba(14,114,48,.35), 0 2px 8px rgba(0,0,0,.1);
+      position: relative; overflow: hidden;
+    }
+    .syarat-contact::before {
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,.06); pointer-events: none;
     }
     .syarat-contact-title {
-      font-size: clamp(.9rem, 1.5vw, 1.1rem);
-      font-weight: 800; color: #fff;
-      white-space: nowrap;
+      display: flex; align-items: center; gap: 10px;
+      font-size: clamp(.85rem, 1.3vw, 1rem);
+      font-weight: 800; color: #fff; white-space: nowrap;
       background: rgba(255,255,255,.15);
-      padding: 8px 20px; border-radius: 100px;
-      border: 1.5px solid rgba(255,255,255,.3);
+      padding: 10px 22px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,.28);
+      backdrop-filter: blur(6px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
     }
-    .syarat-contact-items { display: flex; gap: clamp(20px, 5vw, 48px); flex-wrap: wrap; }
+    .syarat-contact-title::before { content: '🔍'; font-size: 1rem; }
+    .syarat-contact-items { display: flex; gap: clamp(16px, 4vw, 40px); flex-wrap: wrap; }
     .syarat-contact-item {
-      display: flex; align-items: flex-start; gap: 10px;
-      color: rgba(255,255,255,.92);
-      font-size: clamp(.82rem, 1.2vw, .95rem);
-      line-height: 1.6;
+      display: flex; align-items: flex-start; gap: 12px;
+      color: rgba(255,255,255,.9);
+      font-size: clamp(.8rem, 1.15vw, .93rem); line-height: 1.65;
     }
-    .syarat-contact-item > span { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .syarat-contact-icon {
+      width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; margin-top: 1px;
+    }
     .syarat-contact-item strong { color: #fff; font-weight: 700; }
 
     /* Responsive */
     @media (max-width: 1100px) {
       .syarat-body { grid-template-columns: 1fr 1fr; }
-      .syarat-card:nth-child(2) { border-right: none; }
-      .syarat-card:nth-child(3) { grid-column: 1 / -1; border-right: none; border-top: 2px solid #e0f4e0; }
+      .syarat-card:nth-child(3) { grid-column: 1 / -1; }
     }
     @media (max-width: 640px) {
       .syarat-body { grid-template-columns: 1fr; }
-      .syarat-card { border-right: none; border-bottom: 2px solid #e0f4e0; }
-      .syarat-card:last-child { border-bottom: none; }
-      .syarat-contact { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .syarat-contact { flex-direction: column; align-items: flex-start; gap: 14px; border-radius: 16px; }
+      .syarat-contact-title { white-space: normal; }
     }
     /* ===================================================== */
 
@@ -424,15 +484,13 @@
     {{-- ===== SYARAT PENDAFTARAN ===== --}}
     <section class="section-syarat" id="syarat-pendaftaran">
       <div class="syarat-inner">
-        <div class="syarat-header">
-          <div class="syarat-header-badge">Profil Sekolah &nbsp;›&nbsp; Syarat Pendaftaran</div>
-          <h2 class="syarat-header-title">SYARAT PENDAFTARAN</h2>
-        </div>
+        <div class="syarat-section-label">Profil Sekolah &nbsp;›&nbsp; Syarat Pendaftaran</div>
+        <h2 class="syarat-section-title">SYARAT <em>PENDAFTARAN</em></h2>
+
         <div class="syarat-body">
 
           {{-- USIA --}}
           <div class="syarat-card">
-            <div class="syarat-card-icon">🎂</div>
             <div class="syarat-card-label">USIA</div>
             <ul class="syarat-list">
               <li><span class="syarat-tag">TK A</span> 4–5 Tahun per 1 Juli 2026</li>
@@ -442,7 +500,6 @@
 
           {{-- DOKUMEN --}}
           <div class="syarat-card">
-            <div class="syarat-card-icon">📄</div>
             <div class="syarat-card-label">DOKUMEN</div>
             <ul class="syarat-list">
               <li>Fotocopy Akta Kelahiran (2 lembar)</li>
@@ -453,13 +510,14 @@
           </div>
 
           {{-- BIAYA --}}
-          <div class="syarat-card syarat-card-biaya">
-            <div class="syarat-card-icon">💰</div>
+          <div class="syarat-card">
             <div class="syarat-card-label">BIAYA ADMINISTRASI</div>
             <div class="syarat-biaya-grid">
-              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 50.000</span></div>
+              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 100.000</span></div>
+              <div class="syarat-biaya-divider"></div>
               <div class="syarat-biaya-row syarat-biaya-group"><span>Infak Gedung – Tahap 1</span><span class="syarat-biaya-val">Rp 1.250.000</span></div>
               <div class="syarat-biaya-row syarat-biaya-group-last"><span>Infak Gedung – Tahap 2</span><span class="syarat-biaya-val">Rp 1.500.000</span></div>
+              <div class="syarat-biaya-divider"></div>
               <div class="syarat-biaya-row"><span>Seragam Sekolah</span><span class="syarat-biaya-val">Rp 750.000</span></div>
               <div class="syarat-biaya-row"><span>Buku dan ATS</span><span class="syarat-biaya-val">Rp 450.000</span></div>
               <div class="syarat-biaya-row"><span>Rapot</span><span class="syarat-biaya-val">Rp 150.000</span></div>
@@ -472,15 +530,15 @@
 
         {{-- INFORMASI LANJUT --}}
         <div class="syarat-contact">
-          <div class="syarat-contact-title">🔍 INFORMASI LEBIH LANJUT</div>
+          <div class="syarat-contact-title">INFORMASI LEBIH LANJUT</div>
           <div class="syarat-contact-items">
             <div class="syarat-contact-item">
-              <span>📞</span>
+              <div class="syarat-contact-icon">📞</div>
               <div>+62 813 54172964 <strong>(Umi Lia)</strong><br>+62 812 64679202 <strong>(Umi Marwa)</strong></div>
             </div>
             <div class="syarat-contact-item">
-              <span>📍</span>
-              <div>Jl. Bhayangkara Jalur 5, Koperapoka, Mimika Baru</div>
+              <div class="syarat-contact-icon">📍</div>
+              <div>Jl. Bhayangkara Jalur 5,<br>Koperapoka, Mimika Baru</div>
             </div>
           </div>
         </div>
