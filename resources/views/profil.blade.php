@@ -73,6 +73,125 @@
     .vm-misi-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(20,130,50,.35); }
     .vm-misi-card-tag { font-size: clamp(.68rem, 1vw, .78rem); font-weight: 800; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
     .vm-misi-card-text { font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; color: #fff; font-weight: 500; }
+
+    /* =====================================================
+       SECTION SYARAT PENDAFTARAN
+       ===================================================== */
+    .section-syarat { background: #f4fbf4; padding: 0; }
+    .syarat-inner { max-width: 1300px; margin: 0 auto; }
+
+    /* Header – selaras dengan vm-header */
+    .syarat-header {
+      background: linear-gradient(102deg, #0e7230 0%, #178c3a 50%, #1fb149 100%);
+      padding: clamp(18px, 3vw, 36px) clamp(20px, 6vw, 80px);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .syarat-header-badge {
+      font-size: clamp(.82rem, 1.5vw, 1.2rem);
+      color: rgba(255,255,255,.85);
+    }
+    .syarat-header-title {
+      font-family: "Coolvetica-Regular","Arial Black",sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 3rem);
+      font-weight: 900; color: #fff;
+    }
+
+    /* Tiga kartu */
+    .syarat-body {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1.6fr;
+      gap: 0;
+      background: #fff;
+      border-bottom: 2px solid #e0f4e0;
+    }
+    .syarat-card {
+      padding: clamp(24px, 4vw, 48px) clamp(18px, 3.5vw, 40px);
+      border-right: 2px solid #e0f4e0;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .syarat-card:last-child { border-right: none; }
+    .syarat-card-icon { font-size: 2rem; line-height: 1; }
+    .syarat-card-label {
+      font-family: "Coolvetica-Regular","Arial Black",sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 900; color: #1fb149;
+      letter-spacing: .5px;
+    }
+    .syarat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .syarat-list li {
+      font-size: clamp(.88rem, 1.3vw, 1rem);
+      color: #444; line-height: 1.6;
+      padding-left: 18px; position: relative;
+    }
+    .syarat-list li::before {
+      content: '•'; position: absolute; left: 0;
+      color: #1fb149; font-weight: 900; font-size: 1.1rem; line-height: 1.5;
+    }
+    .syarat-list li em { color: #999; font-style: italic; font-size: .9em; }
+    .syarat-tag {
+      display: inline-block;
+      background: #1fb149; color: #fff;
+      font-size: .72rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 100px;
+      margin-right: 6px; letter-spacing: .5px;
+      vertical-align: middle;
+    }
+
+    /* Biaya grid */
+    .syarat-biaya-grid { display: flex; flex-direction: column; gap: 8px; }
+    .syarat-biaya-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: clamp(.82rem, 1.2vw, .95rem); color: #444;
+      padding: 7px 0; border-bottom: 1px solid #f0f0f0;
+    }
+    .syarat-biaya-row:last-child { border-bottom: none; }
+    .syarat-biaya-val {
+      font-weight: 700; color: #1fb149;
+      white-space: nowrap; margin-left: 12px;
+    }
+    .syarat-biaya-group { padding-left: 14px; color: #666; font-size: clamp(.78rem, 1.1vw, .88rem); }
+    .syarat-biaya-group-last { padding-left: 14px; color: #666; font-size: clamp(.78rem, 1.1vw, .88rem); }
+
+    /* Contact bar */
+    .syarat-contact {
+      background: linear-gradient(102deg, #0e7230 0%, #1fb149 100%);
+      padding: clamp(20px, 3vw, 32px) clamp(20px, 6vw, 80px);
+      display: flex; align-items: center; gap: clamp(20px, 5vw, 60px);
+      flex-wrap: wrap;
+    }
+    .syarat-contact-title {
+      font-size: clamp(.9rem, 1.5vw, 1.1rem);
+      font-weight: 800; color: #fff;
+      white-space: nowrap;
+      background: rgba(255,255,255,.15);
+      padding: 8px 20px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,.3);
+    }
+    .syarat-contact-items { display: flex; gap: clamp(20px, 5vw, 48px); flex-wrap: wrap; }
+    .syarat-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      color: rgba(255,255,255,.92);
+      font-size: clamp(.82rem, 1.2vw, .95rem);
+      line-height: 1.6;
+    }
+    .syarat-contact-item > span { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .syarat-contact-item strong { color: #fff; font-weight: 700; }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .syarat-body { grid-template-columns: 1fr 1fr; }
+      .syarat-card:nth-child(2) { border-right: none; }
+      .syarat-card:nth-child(3) { grid-column: 1 / -1; border-right: none; border-top: 2px solid #e0f4e0; }
+    }
+    @media (max-width: 640px) {
+      .syarat-body { grid-template-columns: 1fr; }
+      .syarat-card { border-right: none; border-bottom: 2px solid #e0f4e0; }
+      .syarat-card:last-child { border-bottom: none; }
+      .syarat-contact { flex-direction: column; align-items: flex-start; gap: 14px; }
+    }
+    /* ===================================================== */
+
     .section-kurikulum { background: #fff; padding: clamp(36px, 5vw, 60px) 0; }
     .kurikulum-inner { max-width: 1300px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 60px); align-items: center; }
     .kurikulum-img { border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.12); }
@@ -139,7 +258,6 @@
     .footer-contact-icon { width: 28px; height: 28px; background: rgba(255,255,255,0.12); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
     .footer-contact-text { font-size: clamp(0.78rem,1.1vw,0.88rem); color: rgba(255,255,255,0.82); line-height: 1.55; word-break: break-word; }
     .footer-map-col { display: flex; flex-direction: column; gap: 12px; }
-    /* PETA: awal foto jelas, hover foto gelap + teks muncul */
     .footer-map-box { border-radius: 14px; overflow: hidden; background: transparent; border: 1px solid rgba(255,255,255,0.2); height: clamp(120px,14vw,150px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .35s ease, transform .3s; flex-direction: column; gap: 6px; text-decoration: none; position: relative; }
     .footer-map-box:hover { background: rgba(0,0,0,0.35); transform: translateY(-3px); }
     .footer-map-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity .35s ease; }
@@ -220,6 +338,7 @@
     <div class="nav-mobile-sub">
       <div class="nav-mobile-sub-title">Profil Sekolah</div>
       <div class="nav-mobile-sub-item" onclick="goto('/profil#visi-misi')">Visi &amp; Misi</div>
+      <div class="nav-mobile-sub-item" onclick="goto('/profil#syarat-pendaftaran')">Syarat Pendaftaran</div>
       <div class="nav-mobile-sub-item" onclick="goto('/profil#kurikulum')">Kurikulum</div>
       <div class="nav-mobile-sub-item" onclick="goto('/galeri')">Fasilitas</div>
       <div class="nav-mobile-sub-item" onclick="goto('/profil#staff-pengajar')">Staff Pengajar</div>
@@ -241,6 +360,7 @@
         <span>Profil Sekolah</span><span class="nav-dd-arrow">▾</span>
         <div class="nav-dd-menu" id="navDdMenu">
           <div class="nav-dd-item" onclick="window.location.href='/profil#visi-misi'">Visi &amp; Misi</div>
+          <div class="nav-dd-item" onclick="window.location.href='/profil#syarat-pendaftaran'">Syarat Pendaftaran</div>
           <div class="nav-dd-item" onclick="window.location.href='/profil#kurikulum'">Kurikulum</div>
           <div class="nav-dd-item" onclick="window.location.href='/galeri'">Fasilitas</div>
           <div class="nav-dd-item" onclick="window.location.href='/profil#staff-pengajar'">Staff Pengajar</div>
@@ -267,6 +387,7 @@
         <div class="hero-bar fu fu-1"></div>
       </div>
     </section>
+
     <section class="section-visimisi" id="visi-misi">
       <div class="vm-header">
         <div class="vm-breadcrumb">Profil Sekolah &nbsp;›&nbsp; Visi &amp; Misi</div>
@@ -299,6 +420,74 @@
         </div>
       </div>
     </section>
+
+    {{-- ===== SYARAT PENDAFTARAN ===== --}}
+    <section class="section-syarat" id="syarat-pendaftaran">
+      <div class="syarat-inner">
+        <div class="syarat-header">
+          <div class="syarat-header-badge">Profil Sekolah &nbsp;›&nbsp; Syarat Pendaftaran</div>
+          <h2 class="syarat-header-title">SYARAT PENDAFTARAN</h2>
+        </div>
+        <div class="syarat-body">
+
+          {{-- USIA --}}
+          <div class="syarat-card">
+            <div class="syarat-card-icon">🎂</div>
+            <div class="syarat-card-label">USIA</div>
+            <ul class="syarat-list">
+              <li><span class="syarat-tag">TK A</span> 4–5 Tahun per 1 Juli 2026</li>
+              <li><span class="syarat-tag">TK B</span> 5–6 Tahun per 1 Juli 2026</li>
+            </ul>
+          </div>
+
+          {{-- DOKUMEN --}}
+          <div class="syarat-card">
+            <div class="syarat-card-icon">📄</div>
+            <div class="syarat-card-label">DOKUMEN</div>
+            <ul class="syarat-list">
+              <li>Fotocopy Akta Kelahiran (2 lembar)</li>
+              <li>Fotocopy Kartu Keluarga (2 lembar)</li>
+              <li>Pas Foto ukuran 3×4 (2 lembar)</li>
+              <li>Fotocopy Buku Pink / Buku Menimbang bagian Imunisasi (2 lembar) <em>— jika ada</em></li>
+            </ul>
+          </div>
+
+          {{-- BIAYA --}}
+          <div class="syarat-card syarat-card-biaya">
+            <div class="syarat-card-icon">💰</div>
+            <div class="syarat-card-label">BIAYA ADMINISTRASI</div>
+            <div class="syarat-biaya-grid">
+              <div class="syarat-biaya-row"><span>Formulir Pendaftaran</span><span class="syarat-biaya-val">Rp 50.000</span></div>
+              <div class="syarat-biaya-row syarat-biaya-group"><span>Infak Gedung – Tahap 1</span><span class="syarat-biaya-val">Rp 1.250.000</span></div>
+              <div class="syarat-biaya-row syarat-biaya-group-last"><span>Infak Gedung – Tahap 2</span><span class="syarat-biaya-val">Rp 1.500.000</span></div>
+              <div class="syarat-biaya-row"><span>Seragam Sekolah</span><span class="syarat-biaya-val">Rp 750.000</span></div>
+              <div class="syarat-biaya-row"><span>Buku dan ATS</span><span class="syarat-biaya-val">Rp 450.000</span></div>
+              <div class="syarat-biaya-row"><span>Rapot</span><span class="syarat-biaya-val">Rp 150.000</span></div>
+              <div class="syarat-biaya-row"><span>Kegiatan Semester</span><span class="syarat-biaya-val">Rp 400.000</span></div>
+              <div class="syarat-biaya-row"><span>SPP dan Komite</span><span class="syarat-biaya-val">Rp 250.000</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        {{-- INFORMASI LANJUT --}}
+        <div class="syarat-contact">
+          <div class="syarat-contact-title">🔍 INFORMASI LEBIH LANJUT</div>
+          <div class="syarat-contact-items">
+            <div class="syarat-contact-item">
+              <span>📞</span>
+              <div>+62 813 54172964 <strong>(Umi Lia)</strong><br>+62 812 64679202 <strong>(Umi Marwa)</strong></div>
+            </div>
+            <div class="syarat-contact-item">
+              <span>📍</span>
+              <div>Jl. Bhayangkara Jalur 5, Koperapoka, Mimika Baru</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {{-- ===== END SYARAT PENDAFTARAN ===== --}}
+
     <section class="section-kurikulum" id="kurikulum">
       <div class="kurikulum-inner">
         @if($curriculum)
