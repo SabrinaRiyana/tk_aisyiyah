@@ -558,11 +558,19 @@
           <div class="syarat-contact-title">INFORMASI LEBIH LANJUT</div>
           <div class="syarat-contact-items">
             <div class="syarat-contact-item">
-              <div class="syarat-contact-icon">📞</div>
+              <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#4CAF50">
+        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/>
+      </svg>
+    </div>
               <div>+62 813 54172964 <strong>(Umi Lia)</strong><br>+62 812 64679202 <strong>(Umi Marwa)</strong></div>
             </div>
             <div class="syarat-contact-item">
-              <div class="syarat-contact-icon">📍</div>
+              <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#EF5350">
+        <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.5 7 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+      </svg>
+    </div>
               <div>Jl. Bhayangkara Jalur 5,<br>Koperapoka, Mimika Baru</div>
             </div>
           </div>
@@ -740,7 +748,11 @@
           <a class="footer-map-box" href="{{ schoolInfo('maps_link') }}" target="_blank" rel="noopener">
             <img src="{{ asset('assets/images/Rectangle 49.png') }}" alt="Peta Lokasi" />
             <div class="footer-map-box-inner">
-              <div class="footer-map-pin">📍</div>
+              <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#EF5350">
+        <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.5 7 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+      </svg>
+    </div>
               <div class="footer-map-label">Lihat di<br>Google Maps</div>
             </div>
           </a>
@@ -776,12 +788,36 @@
       <div class="chatbot-typing" id="chatbotTyping"><span></span><span></span><span></span></div>
     </div>
     <div class="chatbot-quick-replies">
-      <button class="quick-reply-btn" onclick="sendQuickReply('PPDB')">📋 PPDB</button>
-      <button class="quick-reply-btn" onclick="sendQuickReply('Fasilitas')">🏫 Fasilitas</button>
-      <button class="quick-reply-btn" onclick="sendQuickReply('Biaya')">💰 Biaya</button>
-      <button class="quick-reply-btn" onclick="sendQuickReply('Lokasi')">📍 Lokasi</button>
-      <button class="quick-reply-btn masukan-btn" onclick="bukaFormMasukan()">📝 Beri Masukan</button>
-    </div>
+  <button class="quick-reply-btn" onclick="sendQuickReply('PPDB')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px;">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v2H8v-2zm0 4h8v2H8v-2zm0-8h4v2H8V9z"/>
+    </svg>PPDB
+  </button>
+
+  <button class="quick-reply-btn" onclick="sendQuickReply('Fasilitas')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px;">
+      <path d="M12 3L2 9v2h1v9h6v-6h6v6h6v-9h1V9L12 3zm0 2.3L19 9.5V10H5v-.5L12 5.3z"/>
+    </svg>Fasilitas
+  </button>
+
+  <button class="quick-reply-btn" onclick="sendQuickReply('Biaya')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px;">
+      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.75 15.5v1.25h-1.5V17.5c-1.32-.16-2.46-.77-3.15-1.64l1.13-1.13c.55.64 1.34 1.1 2.27 1.1.99 0 1.72-.5 1.72-1.28 0-.75-.6-1.1-1.98-1.48-1.9-.51-3.02-1.24-3.02-2.83 0-1.34 1.05-2.32 2.53-2.55V6.25h1.5V7.7c1.1.17 1.98.68 2.55 1.4l-1.12 1.1c-.44-.52-1.06-.86-1.83-.86-.86 0-1.5.42-1.5 1.1 0 .68.58.98 1.85 1.32 2.1.55 3.16 1.32 3.16 2.98 0 1.44-1.13 2.46-2.61 2.76z"/>
+    </svg>Biaya
+  </button>
+
+  <button class="quick-reply-btn" onclick="sendQuickReply('Lokasi')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px;">
+      <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.5 7 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+    </svg>Lokasi
+  </button>
+
+  <button class="quick-reply-btn masukan-btn" onclick="bukaFormMasukan()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px;">
+      <path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-4.34 3.94L3 17.25V21h3.75L17.06 10.69l-3.74-3.75z"/>
+    </svg>Beri Masukan
+  </button>
+</div>
     <div class="chatbot-form-masukan" id="chatbotFormMasukan">
       <div class="form-masukan-title">Form Masukan / Testimoni</div>
       <input type="text" class="masukan-form-name" id="masukanNama" placeholder="Nama Anda (cth: Ibu Sari)" maxlength="50" />
