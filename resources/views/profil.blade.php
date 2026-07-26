@@ -689,8 +689,6 @@
         </div>
         <div class="footer-contact-col">
           <div class="footer-col-title">Hubungi Kami</div>
-          <div class="footer-contact-list">
-            
 <div class="footer-contact-list">
   <div class="footer-contact-item">
     <div class="footer-contact-icon">
