@@ -120,8 +120,8 @@
   .footer-school-name { font-size: clamp(0.9rem,1.4vw,1.05rem); font-weight: 700; line-height: 1.35; color: #fff; }
   .footer-tagline { font-size: clamp(0.78rem,1.1vw,0.86rem); line-height: 1.75; color: rgba(255,255,255,0.68); max-width: 230px; }
   .footer-socials { display: flex; gap: 8px; margin-top: 2px; }
-  .footer-social-btn { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; text-decoration: none; transition: background .2s, transform .2s; }
-  .footer-social-btn:hover { background: rgba(255,255,255,0.24); transform: translateY(-2px); }
+  .footer-social-btn { width: 34px; height: 34px; border-radius: 8px; background: rgba(60,60,60,0.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; text-decoration: none; transition: background .2s, transform .2s; }
+  .footer-social-btn:hover { background: rgba(60,60,60,0.75); transform: translateY(-2px); }
   .footer-col-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
   .footer-nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
   .footer-nav-list li a { color: rgba(255,255,255,0.82); font-size: clamp(0.82rem,1.1vw,0.92rem); text-decoration: none; display: flex; align-items: center; gap: 7px; transition: color .2s, gap .2s; }
@@ -129,7 +129,8 @@
   .footer-nav-list li a:hover { color: #b6ffd0; gap: 11px; }
   .footer-contact-list { display: flex; flex-direction: column; gap: 12px; }
   .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; }
-  .footer-contact-icon { width: 28px; height: 28px; background: rgba(255,255,255,0.12); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .footer-contact-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(60,60,60,0.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .2s; }
+    .footer-contact-icon:hover { background: rgba(60,60,60,0.75); }
   .footer-contact-text { font-size: clamp(0.78rem,1.1vw,0.88rem); color: rgba(255,255,255,0.82); line-height: 1.55; word-break: break-word; }
   .footer-map-col { display: flex; flex-direction: column; gap: 12px; }
   .footer-map-box { border-radius: 14px; overflow: hidden; background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.2); height: clamp(120px,14vw,150px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s, transform .3s; flex-direction: column; gap: 6px; text-decoration: none; position: relative; }
@@ -498,36 +499,112 @@
         <div class="footer-school-name">TK Aisyiyah<br>Mimika</div>
       </div>
       <p class="footer-tagline">Tempat aman dan nyaman untuk belajar sambil bermain bagi anak usia dini di Mimika, Papua Tengah.</p>
-      <div class="footer-socials">
-        <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Instagram">📸</a>
-        <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Facebook">📘</a>
-        <a class="footer-social-btn" href="https://wa.me/{{ preg_replace('/\D/','',schoolInfo('telepon')) }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
-      </div>
+      <!-- Instagram: gradient asli -->
+  <a class="footer-social-btn" href="https://www.instagram.com/tkaisyiyahmimika?igsh=MW43bXd6Z3FpYTZwZA==" target="_blank" rel="noopener" title="Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+      <defs>
+        <linearGradient id="igGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FFDD55"/>
+          <stop offset="30%" stop-color="#FF543E"/>
+          <stop offset="60%" stop-color="#C837AB"/>
+          <stop offset="100%" stop-color="#5851DB"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#igGradient)" d="M12 2c2.717 0 3.056.01 4.123.06 1.066.05 1.793.217 2.428.465a4.9 4.9 0 0 1 1.772 1.153 4.9 4.9 0 0 1 1.153 1.772c.248.635.415 1.362.465 2.428.05 1.067.06 1.406.06 4.123s-.01 3.056-.06 4.123c-.05 1.066-.217 1.793-.465 2.428a4.9 4.9 0 0 1-1.153 1.772 4.9 4.9 0 0 1-1.772 1.153c-.635.248-1.362.415-2.428.465-1.067.05-1.406.06-4.123.06s-3.056-.01-4.123-.06c-1.066-.05-1.793-.217-2.428-.465a4.9 4.9 0 0 1-1.772-1.153 4.9 4.9 0 0 1-1.153-1.772c-.248-.635-.415-1.362-.465-2.428C2.01 15.056 2 14.717 2 12s.01-3.056.06-4.123c.05-1.066.217-1.793.465-2.428a4.9 4.9 0 0 1 1.153-1.772A4.9 4.9 0 0 1 5.45 2.524c.635-.248 1.362-.415 2.428-.465C8.944 2.01 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.467.182-.8.399-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.05 1.055-.06 1.372-.06 4.04s.01 2.986.06 4.04c.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.05 1.37.06 4.041.06s2.987-.01 4.041-.06c.976-.045 1.505-.207 1.858-.344.466-.182.8-.399 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.05-1.055.06-1.372.06-4.041s-.01-2.986-.06-4.04c-.045-.976-.207-1.505-.344-1.858a3.1 3.1 0 0 0-.748-1.15 3.1 3.1 0 0 0-1.15-.748c-.353-.137-.882-.3-1.858-.344-1.054-.05-1.37-.06-4.04-.06zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 0 0 6.666 3.333 3.333 0 0 0 0-6.666zm5.338-1.998a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/>
+    </svg>
+  </a>
+
+  <!-- Facebook: biru asli #1877F2 -->
+  <a class="footer-social-btn" href="https://www.facebook.com/share/1E4r3gWjBE/" target="_blank" rel="noopener" title="Facebook">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#1877F2">
+      <path d="M22 12.06C22 6.507 17.523 2 12 2S2 6.507 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94z"/>
+    </svg>
+  </a>
+
+  <!-- TikTok: hitam asli #000000 -->
+  <a class="footer-social-btn" href="https://www.tiktok.com/@tk.aisyiyah.mimika?_r=1&_t=ZS-98LZSOqESDl" target="_blank" rel="noopener" title="TikTok">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#000000">
+      <path d="M16.6 2h-3.2v13.6c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.3 0 .6.05.9.14V9.7c-.3-.04-.6-.06-.9-.06-3.2 0-5.8 2.6-5.8 5.8S7.4 21.2 10.6 21.2s5.8-2.6 5.8-5.8V8.3c1.24.9 2.77 1.43 4.4 1.43V6.5c-2.35 0-4.2-1.9-4.2-4.2V2z"/>
+    </svg>
+  </a>
+
+  <!-- WhatsApp: hijau asli #25D366 -->
+  <a class="footer-social-btn"
+     href="https://api.whatsapp.com/send/?phone={{ preg_replace('/\D/','',schoolInfo('telepon')) }}&text=Halo%2C+saya+ingin+mendaftar+di+sekolah+TK+Aisyiyah+Mimika.&type=phone_number&app_absent=0"
+     target="_blank" rel="noopener" title="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#25D366">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.83 9.83 0 0 0 12.04 2zm0 1.8c2.19 0 4.25.85 5.79 2.4a8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.16 8.16 0 0 1-1.25-4.35c0-4.52 3.68-8.2 8.21-8.2zm-4.5 4.35c-.16 0-.42.06-.64.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.16 1.7 2.71 4.19 3.7 2.07.83 2.49.66 2.94.62.45-.04 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.77.96-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.19-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.36-.77-1.85-.19-.46-.4-.42-.55-.43z"/>
+    </svg>
+  </a>
+</div>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-col-title">Navigasi</div>
+          <ul class="footer-nav-list">
+            <li><a href="/">Beranda</a></li>
+            <li><a href="/profil">Profil Sekolah</a></li>
+            <li><a href="/galeri">Galeri</a></li>
+            <li><a href="/ppdb">PPDB 2027/2028</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact-col">
+          <div class="footer-col-title">Hubungi Kami</div>
+<div class="footer-contact-list">
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#F5A623">
+        <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 .3V6l8 5.5L20 6v.3l-8 5.7-8-5.7zM4 8.4V18h16V8.4l-8 5.6-8-5.6z"/>
+      </svg>
     </div>
-    <div>
-      <div class="footer-col-title">Navigasi</div>
-      <ul class="footer-nav-list">
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/profil">Profil Sekolah</a></li>
-        <li><a href="/galeri">Galeri</a></li>
-        <li><a href="/ppdb">PPDB 2027/2028</a></li>
-      </ul>
+    <div class="footer-contact-text">{{ schoolInfo('email') }}</div>
+  </div>
+
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+        <defs>
+          <linearGradient id="igGradientContact" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFDD55"/>
+            <stop offset="30%" stop-color="#FF543E"/>
+            <stop offset="60%" stop-color="#C837AB"/>
+            <stop offset="100%" stop-color="#5851DB"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#igGradientContact)" d="M12 2c2.717 0 3.056.01 4.123.06 1.066.05 1.793.217 2.428.465a4.9 4.9 0 0 1 1.772 1.153 4.9 4.9 0 0 1 1.153 1.772c.248.635.415 1.362.465 2.428.05 1.067.06 1.406.06 4.123s-.01 3.056-.06 4.123c-.05 1.066-.217 1.793-.465 2.428a4.9 4.9 0 0 1-1.153 1.772 4.9 4.9 0 0 1-1.772 1.153c-.635.248-1.362.415-2.428.465-1.067.05-1.406.06-4.123.06s-3.056-.01-4.123-.06c-1.066-.05-1.793-.217-2.428-.465a4.9 4.9 0 0 1-1.772-1.153 4.9 4.9 0 0 1-1.153-1.772c-.248-.635-.415-1.362-.465-2.428C2.01 15.056 2 14.717 2 12s.01-3.056.06-4.123c.05-1.066.217-1.793.465-2.428a4.9 4.9 0 0 1 1.153-1.772A4.9 4.9 0 0 1 5.45 2.524c.635-.248 1.362-.415 2.428-.465C8.944 2.01 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.467.182-.8.399-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.05 1.055-.06 1.372-.06 4.04s.01 2.986.06 4.04c.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.05 1.37.06 4.041.06s2.987-.01 4.041-.06c.976-.045 1.505-.207 1.858-.344.466-.182.8-.399 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.05-1.055.06-1.372.06-4.041s-.01-2.986-.06-4.04c-.045-.976-.207-1.505-.344-1.858a3.1 3.1 0 0 0-.748-1.15 3.1 3.1 0 0 0-1.15-.748c-.353-.137-.882-.3-1.858-.344-1.054-.05-1.37-.06-4.04-.06zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 0 0 6.666 3.333 3.333 0 0 0 0-6.666zm5.338-1.998a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/>
+      </svg>
     </div>
-    <div>
-      <div class="footer-col-title">Hubungi Kami</div>
-      <div class="footer-contact-list">
-        <div class="footer-contact-item"><div class="footer-contact-icon">📧</div><div class="footer-contact-text">{{ schoolInfo('email') }}</div></div>
-        <div class="footer-contact-item"><div class="footer-contact-icon">📱</div><div class="footer-contact-text">{{ schoolInfo('instagram') }}</div></div>
-        <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><div class="footer-contact-text">{{ schoolInfo('telepon') }}</div></div>
-        <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">{{ schoolInfo('alamat') }}</div></div>
-      </div>
+    <div class="footer-contact-text">{{ schoolInfo('instagram') }}</div>
+  </div>
+
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#4CAF50">
+        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/>
+      </svg>
     </div>
-    <div class="footer-map-col">
-      <div class="footer-col-title">Lokasi Kami</div>
-      <a class="footer-map-box" href="{{ schoolInfo('maps_link') }}" target="_blank" rel="noopener">
-        <img src="{{ asset('assets/images/Rectangle 49.png') }}" alt="Peta Lokasi" />
-        <div class="footer-map-box-inner">
-          <div class="footer-map-pin">📍</div>
+    <div class="footer-contact-text">{{ schoolInfo('telepon') }}</div>
+  </div>
+
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#EF5350">
+        <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.5 7 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+      </svg>
+    </div>
+    <div class="footer-contact-text">{{ schoolInfo('alamat') }}</div>
+  </div>
+</div>
+        </div>
+        <div class="footer-map-col">
+          <div class="footer-col-title">Lokasi Kami</div>
+          <a class="footer-map-box" href="{{ schoolInfo('maps_link') }}" target="_blank" rel="noopener">
+            <img src="{{ asset('assets/images/Rectangle 49.png') }}" alt="Peta Lokasi" />
+            <div class="footer-map-box-inner">
+              <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#EF5350">
+        <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.5 7 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+      </svg>
+    </div>
           <div class="footer-map-label">Lihat di<br>Google Maps</div>
         </div>
       </a>
