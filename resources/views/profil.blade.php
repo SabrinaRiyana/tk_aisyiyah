@@ -640,7 +640,7 @@
           <p class="footer-tagline">Tempat aman dan nyaman untuk belajar sambil bermain bagi anak usia dini di Mimika, Papua Tengah.</p>
          <div class="footer-socials">
   <!-- Instagram: gradient asli -->
-  <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Instagram">
+  <a class="footer-social-btn" href="https://www.instagram.com/tkaisyiyahmimika?igsh=MW43bXd6Z3FpYTZwZA==" target="_blank" rel="noopener" title="Instagram">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
       <defs>
         <linearGradient id="igGradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -655,14 +655,14 @@
   </a>
 
   <!-- Facebook: biru asli #1877F2 -->
-  <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="Facebook">
+  <a class="footer-social-btn" href="https://www.facebook.com/share/1E4r3gWjBE/" target="_blank" rel="noopener" title="Facebook">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#1877F2">
       <path d="M22 12.06C22 6.507 17.523 2 12 2S2 6.507 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94z"/>
     </svg>
   </a>
 
   <!-- TikTok: hitam asli #000000 -->
-  <a class="footer-social-btn" href="#" target="_blank" rel="noopener" title="TikTok">
+  <a class="footer-social-btn" href="https://www.tiktok.com/@tk.aisyiyah.mimika?_r=1&_t=ZS-98LZSOqESDl" target="_blank" rel="noopener" title="TikTok">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#000000">
       <path d="M16.6 2h-3.2v13.6c0 1.5-1.2 2.7-2.7 2.7s-2.7-1.2-2.7-2.7 1.2-2.7 2.7-2.7c.3 0 .6.05.9.14V9.7c-.3-.04-.6-.06-.9-.06-3.2 0-5.8 2.6-5.8 5.8S7.4 21.2 10.6 21.2s5.8-2.6 5.8-5.8V8.3c1.24.9 2.77 1.43 4.4 1.43V6.5c-2.35 0-4.2-1.9-4.2-4.2V2z"/>
     </svg>
