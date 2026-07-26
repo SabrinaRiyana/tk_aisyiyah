@@ -331,7 +331,8 @@
     .footer-nav-list li a:hover { color: #b6ffd0; gap: 11px; }
     .footer-contact-list { display: flex; flex-direction: column; gap: 12px; }
     .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; }
-    .footer-contact-icon { width: 28px; height: 28px; background: rgba(255,255,255,0.12); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .footer-contact-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(60,60,60,0.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .2s; }
+    .footer-contact-icon:hover { background: rgba(60,60,60,0.75); }
     .footer-contact-text { font-size: clamp(0.78rem,1.1vw,0.88rem); color: rgba(255,255,255,0.82); line-height: 1.55; word-break: break-word; }
     .footer-map-col { display: flex; flex-direction: column; gap: 12px; }
     .footer-map-box { border-radius: 14px; overflow: hidden; background: transparent; border: 1px solid rgba(255,255,255,0.2); height: clamp(120px,14vw,150px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .35s ease, transform .3s; flex-direction: column; gap: 6px; text-decoration: none; position: relative; }
@@ -689,11 +690,42 @@
         <div class="footer-contact-col">
           <div class="footer-col-title">Hubungi Kami</div>
           <div class="footer-contact-list">
-            <div class="footer-contact-item"><div class="footer-contact-icon">📧</div><div class="footer-contact-text">{{ schoolInfo('email') }}</div></div>
-            <div class="footer-contact-item"><div class="footer-contact-icon">📱</div><div class="footer-contact-text">{{ schoolInfo('instagram') }}</div></div>
-            <div class="footer-contact-item"><div class="footer-contact-icon">📞</div><div class="footer-contact-text">{{ schoolInfo('telepon') }}</div></div>
-            <div class="footer-contact-item"><div class="footer-contact-icon">📍</div><div class="footer-contact-text">{{ schoolInfo('alamat') }}</div></div>
-          </div>
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 .3V6l8 5.5L20 6v.3l-8 5.7-8-5.7zM4 8.4V18h16V8.4l-8 5.6-8-5.6z"/>
+      </svg>
+    </div>
+    <div class="footer-contact-text">{{ schoolInfo('email') }}</div>
+  </div>
+
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M12 2c2.717 0 3.056.01 4.123.06 1.066.05 1.793.217 2.428.465a4.9 4.9 0 0 1 1.772 1.153 4.9 4.9 0 0 1 1.153 1.772c.248.635.415 1.362.465 2.428.05 1.067.06 1.406.06 4.123s-.01 3.056-.06 4.123c-.05 1.066-.217 1.793-.465 2.428a4.9 4.9 0 0 1-1.153 1.772 4.9 4.9 0 0 1-1.772 1.153c-.635.248-1.362.415-2.428.465-1.067.05-1.406.06-4.123.06s-3.056-.01-4.123-.06c-1.066-.05-1.793-.217-2.428-.465a4.9 4.9 0 0 1-1.772-1.153 4.9 4.9 0 0 1-1.153-1.772c-.248-.635-.415-1.362-.465-2.428C2.01 15.056 2 14.717 2 12s.01-3.056.06-4.123c.05-1.066.217-1.793.465-2.428a4.9 4.9 0 0 1 1.153-1.772A4.9 4.9 0 0 1 5.45 2.524c.635-.248 1.362-.415 2.428-.465C8.944 2.01 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.467.182-.8.399-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.05 1.055-.06 1.372-.06 4.04s.01 2.986.06 4.04c.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.05 1.37.06 4.041.06s2.987-.01 4.041-.06c.976-.045 1.505-.207 1.858-.344.466-.182.8-.399 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.05-1.055.06-1.372.06-4.041s-.01-2.986-.06-4.04c-.045-.976-.207-1.505-.344-1.858a3.1 3.1 0 0 0-.748-1.15 3.1 3.1 0 0 0-1.15-.748c-.353-.137-.882-.3-1.858-.344-1.054-.05-1.37-.06-4.04-.06zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 0 0 6.666 3.333 3.333 0 0 0 0-6.666zm5.338-1.998a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/>
+      </svg>
+    </div>
+    <div class="footer-contact-text">{{ schoolInfo('instagram') }}</div>
+  </div>
+
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/>
+      </svg>
+    </div>
+    <div class="footer-contact-text">{{ schoolInfo('telepon') }}</div>
+  </div>
+
+  <div class="footer-contact-item">
+    <div class="footer-contact-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M12 2c-4.42 0-8 3.58-8 8 0 5.5 7 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+      </svg>
+    </div>
+    <div class="footer-contact-text">{{ schoolInfo('alamat') }}</div>
+  </div>
+</div>
         </div>
         <div class="footer-map-col">
           <div class="footer-col-title">Lokasi Kami</div>
