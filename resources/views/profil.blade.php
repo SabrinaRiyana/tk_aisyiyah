@@ -322,8 +322,8 @@
     .footer-school-name { font-size: clamp(0.9rem,1.4vw,1.05rem); font-weight: 700; line-height: 1.35; color: #fff; }
     .footer-tagline { font-size: clamp(0.78rem,1.1vw,0.86rem); line-height: 1.75; color: rgba(255,255,255,0.68); max-width: 230px; }
     .footer-socials { display: flex; gap: 8px; margin-top: 2px; }
-    .footer-social-btn { width: 34px; height: 34px; border-radius: 8px; background: #ffffff; border: none; display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; text-decoration: none; transition: background .2s, transform .2s; }
-    .footer-social-btn:hover { background: #f0f0f0; transform: translateY(-2px); }
+    .footer-social-btn { width: 34px; height: 34px; border-radius: 8px; background: rgba(60,60,60,0.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; text-decoration: none; transition: background .2s, transform .2s; }
+    .footer-social-btn:hover { background: rgba(60,60,60,0.75); transform: translateY(-2px); }
     .footer-col-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
     .footer-nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
     .footer-nav-list li a { color: rgba(255,255,255,0.82); font-size: clamp(0.82rem,1.1vw,0.92rem); text-decoration: none; display: flex; align-items: center; gap: 7px; transition: color .2s, gap .2s; }
